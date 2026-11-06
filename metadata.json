@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix Remix Remix Remix Remix Remix Remix ManagementHub Enterprise Food Cloud Suite",
+  "description": "Multi-portal food ecosystem featuring Customer Online Food Ordering Store, Restaurant Kitchen Branch Admin, and Platform Super Admin Console with live real-time multi-device sync.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

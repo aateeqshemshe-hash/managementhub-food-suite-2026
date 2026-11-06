@@ -1,0 +1,26 @@
+{
+  "name": "ManagementHub Enterprise Food Cloud Suite",
+  "short_name": "ManagementHub",
+  "description": "Multi-portal food ecosystem featuring Customer Online Food Ordering Store, Restaurant Kitchen Branch Admin, and Platform Super Admin Console with live real-time sync.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#f97316",
+  "lang": "en",
+  "scope": "/",
+  "id": "/",
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

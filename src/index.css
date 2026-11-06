@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+.product-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Remove any price badge overlay on product image */
+.product-image .absolute,
+.product-image [class*="bottom-"],
+.product-image span[class*="font-black"],
+span.absolute.bottom-2,
+span.absolute.bottom-2.left-2,
+span.absolute[class*="bottom-2"],
+span.absolute[class*="bottom-3"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+

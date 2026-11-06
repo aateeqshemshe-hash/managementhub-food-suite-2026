@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f97316" />
+      <stop offset="50%" stop-color="#ea580c" />
+      <stop offset="100%" stop-color="#c2410c" />
+    </linearGradient>
+    <linearGradient id="plateGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#ffedd5" />
+    </linearGradient>
+  </defs>
+  <!-- Background with safe zone for maskable / squircle -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+  <circle cx="256" cy="256" r="185" fill="#0f172a" fill-opacity="0.18" />
+  <!-- Cloche / Food Dome Icon inside central 80% safe zone -->
+  <path d="M136 296 C136 220 189 168 256 168 C323 168 376 220 376 296 Z" fill="url(#plateGrad)" />
+  <circle cx="256" cy="148" r="20" fill="#ffffff" />
+  <rect x="116" y="310" width="280" height="28" rx="14" fill="#ffffff" />
+  <!-- Steam waves -->
+  <path d="M216 112 Q224 92 216 76" stroke="#fde68a" stroke-width="10" stroke-linecap="round" fill="none" />
+  <path d="M256 104 Q264 84 256 66" stroke="#fde68a" stroke-width="10" stroke-linecap="round" fill="none" />
+  <path d="M296 112 Q304 92 296 76" stroke="#fde68a" stroke-width="10" stroke-linecap="round" fill="none" />
+  <!-- Fork & Spoon accent bar -->
+  <rect x="176" y="356" width="160" height="14" rx="7" fill="#fed7aa" fill-opacity="0.85" />
+</svg>

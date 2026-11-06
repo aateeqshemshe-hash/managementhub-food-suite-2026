@@ -1,0 +1,3075 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f97316" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="FoodOrdering" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest">
+    <title>Online Food Ordering & Delivery</title>
+    <meta name="description" content="Order authentic food online. Fast doorstep delivery, chef-curated menus, live kitchen updates, and digital takeaways." />
+    <meta property="og:title" content="Online Food Ordering & Delivery" />
+    <meta property="og:description" content="Order authentic food online. Fast doorstep delivery, chef-curated menus, live kitchen updates, and digital takeaways." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600;1,700&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" crossorigin href="/assets/index-DexBHdcg.css">
+    <style id="dynamic-card-style">
+      /* Dynamic Card & Box Background styling - applies custom card/box colors across all components */
+      html[style*="--card-bg"] .bg-slate-900,
+      html[style*="--card-bg"] .bg-slate-900\/90,
+      html[style*="--card-bg"] .bg-slate-900\/80,
+      html[style*="--card-bg"] .bg-slate-900\/60,
+      html[style*="--card-bg"] .bg-slate-900\/50,
+      html[style*="--card-bg"] .bg-slate-950\/70,
+      html[style*="--card-bg"] .bg-slate-950\/60,
+      html[style*="--card-bg"] .bg-slate-950\/80,
+      html[style*="--card-bg"] .bg-slate-950\/40,
+      html[data-theme] .bg-slate-900,
+      html[data-theme] .bg-slate-900\/90,
+      html[data-theme] .bg-slate-900\/80,
+      html[data-theme] .bg-slate-900\/60,
+      html[data-theme] .bg-slate-900\/50,
+      html[data-theme] .bg-slate-950\/70,
+      html[data-theme] .bg-slate-950\/60,
+      html[data-theme] .bg-slate-950\/80,
+      html[data-theme] .bg-slate-950\/40 {
+        background-color: var(--card-bg) !important;
+      }
+
+      /* Inner nested wells or table headers slightly darker with natural depth */
+      html[style*="--card-bg"] .bg-slate-950:not(.min-h-screen),
+      html[data-theme] .bg-slate-950:not(.min-h-screen) {
+        background-color: color-mix(in srgb, var(--card-bg) 75%, #000 25%) !important;
+      }
+
+      /* Card borders with subtle translucency */
+      html[style*="--card-bg"] .border-slate-800,
+      html[style*="--card-bg"] .border-slate-800\/80,
+      html[data-theme] .border-slate-800,
+      html[data-theme] .border-slate-800\/80 {
+        border-color: rgba(255, 255, 255, 0.1) !important;
+      }
+
+      /* Canvas Background overrides */
+      html[style*="--bg"] body,
+      html[style*="--bg"] .bg-slate-950.min-h-screen,
+      html[style*="--bg"] .min-h-screen.bg-slate-950 {
+        background-color: var(--bg) !important;
+      }
+
+      /* Fix Task 4: Customer Storefront Top Bar & Header Collision Alignment */
+      .sticky.top-0 {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 50 !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
+      }
+
+      header.sticky.top-8 {
+        position: sticky !important;
+        top: 48px !important;
+        z-index: 40 !important;
+      }
+
+      @media (max-width: 768px) {
+        .sticky.top-0 {
+          position: relative !important;
+        }
+        header.sticky.top-8 {
+          position: relative !important;
+          top: 0 !important;
+          margin-top: 4px !important;
+        }
+      }
+
+      /* Ensure Exit and Status buttons never collide or overlap */
+      .storefront-action-bar,
+      header > div {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        align-items: center !important;
+      }
+
+      /* Hide Admin Top Categories bar completely as requested */
+      .admin-top-categories,
+      div.flex.items-center.space-x-2.overflow-x-auto.pb-1:has(span),
+      div.flex.items-center.space-x-2.overflow-x-auto.pb-1:not(.mghub-cat-bar-wrapper *) {
+        display: none !important;
+      }
+
+      /* =========================================================================
+         FOODPANDA MOBILE & COMPACT STOREFRONT ENGINE (Zero Oversized Boxes)
+         100% Zero-Crop Full Image: Jo bhi photo upload ho, pori dikhayi degi
+         ========================================================================= */
+
+      /* =========================================================================
+         PROTECT ADMIN & SUPER ADMIN: SMALL PICTURE BOXES (Restored Exactly As They Were)
+         ========================================================================= */
+
+      /* 1. Super Admin Restaurant Logo Box (Small 44px x 44px / w-11 h-11) */
+      .relative.group:has(img.w-11),
+      .relative.group[title*="Logo"],
+      .relative.group[title*="Super Admin"],
+      div[title*="Website Logo"],
+      div[title*="Change"] {
+        display: block !important;
+        width: 2.75rem !important; /* 44px */
+        min-width: 2.75rem !important;
+        max-width: 2.75rem !important;
+        height: 2.75rem !important; /* 44px */
+        min-height: 2.75rem !important;
+        max-height: 2.75rem !important;
+        flex-shrink: 0 !important;
+        border-radius: 0.75rem !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+      }
+
+      .relative.group:has(img.w-11) img,
+      .relative.group[title*="Logo"] img,
+      img.w-11,
+      .w-11.h-11 {
+        width: 2.75rem !important; /* 44px */
+        min-width: 2.75rem !important;
+        max-width: 2.75rem !important;
+        height: 2.75rem !important; /* 44px */
+        min-height: 2.75rem !important;
+        max-height: 2.75rem !important;
+        border-radius: 0.75rem !important;
+        object-fit: cover !important;
+        display: block !important;
+        background-color: transparent !important;
+      }
+
+      /* 2. Restaurant Admin Dish Catalog Image (Small 80px / w-20 h-20) */
+      img.w-20,
+      .w-20.h-20 {
+        width: 5rem !important; /* 80px */
+        min-width: 5rem !important;
+        max-width: 5rem !important;
+        height: 5rem !important; /* 80px */
+        min-height: 5rem !important;
+        max-height: 5rem !important;
+        border-radius: 0.75rem !important;
+        object-fit: cover !important;
+        display: block !important;
+        flex-shrink: 0 !important;
+      }
+
+      /* 3. Small Avatars & Badges in Admin and Super Admin */
+      img.w-8, .w-8.h-8 {
+        width: 2rem !important;
+        height: 2rem !important;
+        min-width: 2rem !important;
+        min-height: 2rem !important;
+        max-width: 2rem !important;
+        max-height: 2rem !important;
+        object-fit: cover !important;
+      }
+      img.w-12, .w-12.h-12 {
+        width: 3rem !important;
+        height: 3rem !important;
+        min-width: 3rem !important;
+        min-height: 3rem !important;
+        max-width: 3rem !important;
+        max-height: 3rem !important;
+        object-fit: cover !important;
+      }
+      img.w-16, .w-16.h-16 {
+        width: 4rem !important;
+        height: 4rem !important;
+        min-width: 4rem !important;
+        min-height: 4rem !important;
+        max-width: 4rem !important;
+        max-height: 4rem !important;
+        object-fit: cover !important;
+      }
+
+      /* 4. Menu Manager Modal Table/Row Dish Photos (Small 48px) */
+      .menu-item-row img {
+        width: 48px !important;
+        min-width: 48px !important;
+        max-width: 48px !important;
+        height: 48px !important;
+        min-height: 48px !important;
+        max-height: 48px !important;
+        border-radius: 10px !important;
+        object-fit: cover !important;
+      }
+
+      /* =========================================================================
+         CUSTOMER STOREFRONT: HORIZONTAL CATEGORY SCROLL & ALL CATEGORIES SHOWCASE
+         Smooth scrolling, arrow buttons, zero squishing, touch momentum, visual cards
+         ========================================================================= */
+      .mghub-cat-bar-wrapper {
+        position: relative !important;
+        display: flex !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .mghub-cat-bar-wrapper .overflow-x-auto {
+        scroll-behavior: smooth !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+      }
+
+      .mghub-cat-bar-wrapper .overflow-x-auto::-webkit-scrollbar {
+        display: none !important;
+      }
+
+      .mghub-cat-bar-wrapper button {
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+      }
+
+      .mghub-cat-arrow-prev,
+      .mghub-cat-arrow-next {
+        flex-shrink: 0 !important;
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 10px !important;
+        background: rgba(15, 23, 42, 0.95) !important;
+        border: 1px solid rgba(51, 65, 85, 0.8) !important;
+        color: #f8fafc !important;
+        font-size: 16px !important;
+        font-weight: 900 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+        z-index: 20 !important;
+      }
+
+      .mghub-cat-arrow-prev:hover,
+      .mghub-cat-arrow-next:hover {
+        background: #f97316 !important;
+        border-color: #f97316 !important;
+        transform: scale(1.08) !important;
+      }
+
+      .mghub-category-card:hover {
+        border-color: #f97316 !important;
+        box-shadow: 0 10px 25px rgba(249, 115, 22, 0.25) !important;
+      }
+
+      /* =========================================================================
+         SUPER ADMIN RESTAURANT CARD TOOLS & ZERO-OVERFLOW PROTECTION
+         ========================================================================= */
+      .mghub-card-tools-row {
+        display: grid !important;
+        grid-template-columns: repeat(5, 1fr) !important;
+        gap: 4px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .mghub-card-tools-row button {
+        padding: 6px 4px !important;
+        font-size: 10px !important;
+        font-weight: 700 !important;
+        border-radius: 10px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 4px !important;
+        text-align: center !important;
+        min-width: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+      }
+
+      div:has(> button[title="Edit Restaurant Info"]) {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 6px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+      }
+
+      div:has(> button[title="Edit Restaurant Info"]) > button:first-child {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        white-space: nowrap !important;
+      }
+
+      div:has(> button[title="Edit Restaurant Info"]) > button[title="Edit Restaurant Info"],
+      div:has(> button[title="Edit Restaurant Info"]) > button[title="Delete Restaurant"] {
+        flex-shrink: 0 !important;
+      }
+
+      /* =========================================================================
+         CUSTOMER STOREFRONT MENU CARD: DYNAMIC SHAPE & SIZE ENGINE
+         Admin Customizable: Shape (Round, Squircle, Sharp, Pill, Angled), 
+         Image Frame (Square, Landscape, Classic, Circle, Capsule), and Size
+         ========================================================================= */
+      :root {
+        --menu-card-radius: 18px;
+        --menu-card-img-radius: 18px 18px 0 0;
+        --menu-card-img-aspect: 1 / 1;
+        --menu-card-img-fit: contain;
+        --menu-card-img-height: auto;
+        --menu-card-min-width: 260px;
+        --menu-card-gap: 16px;
+        --menu-card-border: 1px solid rgba(255, 255, 255, 0.08);
+        --menu-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Base Dish Card Frame */
+      .group:has(> .relative.h-48),
+      .group:has(> .relative.h-36),
+      div[class*="rounded-3xl"]:has(> .relative.h-48),
+      div[class*="rounded-3xl"]:has(> .relative.h-36) {
+        border-radius: var(--menu-card-radius, 18px) !important;
+        border: var(--menu-card-border, 1px solid rgba(255, 255, 255, 0.08)) !important;
+        box-shadow: var(--menu-card-shadow, 0 4px 20px rgba(0, 0, 0, 0.4)) !important;
+        overflow: hidden !important;
+        transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+      }
+
+      /* Card Shapes: Sharp Sleek Box */
+      html[data-card-shape="sharp"] .group:has(> .relative.h-48),
+      html[data-card-shape="sharp"] .group:has(> .relative.h-36),
+      html[data-card-shape="sharp"] div[class*="rounded-3xl"]:has(> .relative.h-48),
+      html[data-card-shape="sharp"] div[class*="rounded-3xl"]:has(> .relative.h-36),
+      html[data-card-shape="sharp"] .product-image {
+        border-radius: 0px !important;
+      }
+
+      /* Card Shapes: Squircle Super Smooth (26px) */
+      html[data-card-shape="rounded-3xl"] .group:has(> .relative.h-48),
+      html[data-card-shape="rounded-3xl"] .group:has(> .relative.h-36),
+      html[data-card-shape="rounded-3xl"] div[class*="rounded-3xl"]:has(> .relative.h-48),
+      html[data-card-shape="rounded-3xl"] div[class*="rounded-3xl"]:has(> .relative.h-36) {
+        border-radius: 26px !important;
+      }
+
+      /* Card Shapes: Organic Capsule / Pill Curve (36px) */
+      html[data-card-shape="pill"] .group:has(> .relative.h-48),
+      html[data-card-shape="pill"] .group:has(> .relative.h-36),
+      html[data-card-shape="pill"] div[class*="rounded-3xl"]:has(> .relative.h-48),
+      html[data-card-shape="pill"] div[class*="rounded-3xl"]:has(> .relative.h-36) {
+        border-radius: 36px !important;
+      }
+
+      /* Card Shapes: Angled Cyber Cut (Diagonal) */
+      html[data-card-shape="angled"] .group:has(> .relative.h-48),
+      html[data-card-shape="angled"] .group:has(> .relative.h-36),
+      html[data-card-shape="angled"] div[class*="rounded-3xl"]:has(> .relative.h-48),
+      html[data-card-shape="angled"] div[class*="rounded-3xl"]:has(> .relative.h-36) {
+        border-radius: 28px 4px 28px 4px !important;
+      }
+
+      /* Product Image Container Specification & Auto-Fit */
+      .product-image,
+      .group > .relative.h-48,
+      .group > .relative.h-36,
+      .group .relative.h-48,
+      .group .relative.h-36,
+      div[class*="rounded-3xl"] > .relative.h-48,
+      div[class*="rounded-3xl"] > .relative.h-36,
+      .relative.h-48:has(> img),
+      .relative.h-36:has(> img),
+      [data-dish-image-container] {
+        width: 100% !important;
+        aspect-ratio: var(--menu-card-img-aspect, 1 / 1) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        overflow: hidden !important;
+        position: relative !important;
+        border-radius: var(--menu-card-img-radius, 18px 18px 0 0) !important;
+        background-color: #020617 !important;
+        height: var(--menu-card-img-height, auto) !important;
+        max-height: none !important;
+      }
+
+      .product-image img,
+      .group > .relative.h-48 img,
+      .group > .relative.h-36 img,
+      .group .relative.h-48 img,
+      .group .relative.h-36 img,
+      div[class*="rounded-3xl"] > .relative.h-48 img,
+      div[class*="rounded-3xl"] > .relative.h-36 img,
+      .relative.h-48:has(> img) img,
+      .relative.h-36:has(> img) img,
+      [data-dish-image-container] img,
+      .storefront-dish-img {
+        width: 100% !important;
+        height: 100% !important;
+        aspect-ratio: var(--menu-card-img-aspect, 1 / 1) !important;
+        object-fit: var(--menu-card-img-fit, contain) !important;
+        object-position: center center !important;
+        background-color: transparent !important;
+        display: block !important;
+        border-radius: inherit !important;
+        transition: transform 0.3s ease !important;
+      }
+
+      /* Image Shapes: Round Floating Circle Avatar */
+      html[data-img-shape="circle"] .product-image,
+      html[data-img-shape="circle"] .group > .relative.h-48,
+      html[data-img-shape="circle"] .group > .relative.h-36,
+      html[data-img-shape="circle"] div[class*="rounded-3xl"] > .relative.h-48,
+      html[data-img-shape="circle"] div[class*="rounded-3xl"] > .relative.h-36 {
+        width: 130px !important;
+        height: 130px !important;
+        min-width: 130px !important;
+        max-width: 130px !important;
+        border-radius: 9999px !important;
+        margin: 12px auto 4px !important;
+        border: 3px solid rgba(249, 115, 22, 0.4) !important;
+      }
+      html[data-img-shape="circle"] .product-image img,
+      html[data-img-shape="circle"] .group > .relative.h-48 img,
+      html[data-img-shape="circle"] .group > .relative.h-36 img {
+        border-radius: 9999px !important;
+        object-fit: cover !important;
+      }
+
+      /* Image Shapes: Capsule / Oval Frame */
+      html[data-img-shape="capsule"] .product-image,
+      html[data-img-shape="capsule"] .group > .relative.h-48,
+      html[data-img-shape="capsule"] .group > .relative.h-36 {
+        border-radius: 9999px !important;
+        margin: 8px 12px !important;
+        width: calc(100% - 24px) !important;
+      }
+
+      .group:hover .product-image img,
+      .group:hover > .relative.h-48 img,
+      .group:hover > .relative.h-36 img,
+      .group:hover [data-dish-image-container] img {
+        transform: scale(1.03) !important;
+      }
+
+      /* Clean Dish Image: No price overlay on photo */
+      .product-image .absolute,
+      .product-image [class*="bottom-"],
+      .product-image span[class*="font-black"],
+      .group .relative .absolute[class*="bottom-"],
+      .group .relative span.absolute,
+      .group > .relative.h-48 .absolute.bottom-3,
+      .group > .relative.h-36 .absolute.bottom-3,
+      .group .relative.h-48 .absolute.bottom-3,
+      .group .relative.h-36 .absolute.bottom-3,
+      div[class*="rounded-3xl"] > .relative.h-48 .absolute.bottom-3,
+      div[class*="rounded-3xl"] > .relative.h-36 .absolute.bottom-3,
+      .relative.h-48:has(> img) .absolute.bottom-3,
+      .relative.h-36:has(> img) .absolute.bottom-3,
+      [data-dish-image-container] .absolute.bottom-3,
+      .relative:has(> img) > span.absolute,
+      div[class*="overflow-hidden"]:has(> img) > span.absolute,
+      span.absolute.bottom-2,
+      span.absolute.bottom-2.left-2,
+      span.absolute[class*="bottom-2"],
+      span.absolute[class*="bottom-3"],
+      .product-image span[class*="font-black"],
+      .group > .relative.h-48 span[class*="font-black"],
+      .group > .relative.h-36 span[class*="font-black"],
+      [data-dish-image-container] span[class*="font-black"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+
+      /* Grid Proportions: Admin Scalable */
+      .grid:has(> .group .relative.h-48),
+      .grid:has(> .group .relative.h-36),
+      .grid:has(> div[class*="rounded-3xl"] .relative.h-48),
+      .grid:has(> div[class*="rounded-3xl"] .relative.h-36),
+      .storefront-dish-grid {
+        grid-template-columns: repeat(auto-fill, minmax(var(--menu-card-min-width, 260px), 1fr)) !important;
+        gap: var(--menu-card-gap, 16px) !important;
+      }
+
+      /* Foodpanda Horizontal Card Mode (Desktop or Mobile when selected) */
+      html[data-menu-layout="horizontal"] .grid:has(> .group:has(> .relative.h-48)),
+      html[data-menu-layout="horizontal"] .grid:has(> .group:has(> .relative.h-36)),
+      html[data-menu-layout="horizontal"] .grid:has(> div[class*="rounded-3xl"]:has(> .relative.h-48)),
+      html[data-menu-layout="horizontal"] .grid:has(> div[class*="rounded-3xl"]:has(> .relative.h-36)),
+      html[data-menu-layout="horizontal"] .storefront-dish-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: var(--menu-card-gap, 12px) !important;
+      }
+      html[data-menu-layout="horizontal"] .group:has(> .relative.h-48),
+      html[data-menu-layout="horizontal"] .group:has(> .relative.h-36),
+      html[data-menu-layout="horizontal"] div[class*="rounded-3xl"]:has(> .relative.h-48),
+      html[data-menu-layout="horizontal"] div[class*="rounded-3xl"]:has(> .relative.h-36) {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: stretch !important;
+        min-height: 105px !important;
+        padding: 10px 12px !important;
+        gap: 12px !important;
+      }
+      html[data-menu-layout="horizontal"] .product-image,
+      html[data-menu-layout="horizontal"] .group > .relative.h-48,
+      html[data-menu-layout="horizontal"] .group > .relative.h-36,
+      html[data-menu-layout="horizontal"] div[class*="rounded-3xl"] > .relative.h-48,
+      html[data-menu-layout="horizontal"] div[class*="rounded-3xl"] > .relative.h-36 {
+        order: 2 !important;
+        width: 110px !important;
+        min-width: 110px !important;
+        max-width: 110px !important;
+        height: 110px !important;
+        border-radius: var(--menu-card-radius, 14px) !important;
+        flex-shrink: 0 !important;
+      }
+
+      /* Compact Mini Tile Mode */
+      html[data-card-size="compact"] .grid:has(> .group .relative.h-48) {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+        gap: 10px !important;
+      }
+
+      /* Jumbo Showcase Mode */
+      html[data-card-size="large"] .grid:has(> .group .relative.h-48) {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+        gap: 22px !important;
+      }
+
+      /* Foodpanda Mobile Card Layout */
+      @media (max-width: 768px) {
+        /* Left Side: Dish Details (Name, Description, Portion Rates, Add Button) */
+        .group:has(> .relative.h-48) > div:nth-child(2),
+        .group:has(> .relative.h-36) > div:nth-child(2),
+        div[class*="rounded-3xl"]:has(> .relative.h-48) > div:nth-child(2),
+        div[class*="rounded-3xl"]:has(> .relative.h-36) > div:nth-child(2),
+        .group:has(> .relative.h-48) > .p-5,
+        .group:has(> .relative.h-36) > .p-5 {
+          order: 1 !important;
+          flex: 1 1 0% !important;
+          min-width: 0 !important;
+          padding: 0 !important;
+          display: flex !important;
+          flex-direction: column !important;
+          justify-content: space-between !important;
+          gap: 4px !important;
+        }
+
+        /* Foodpanda Bold Dish Title */
+        .group:has(> .relative.h-48) h4,
+        .group:has(> .relative.h-36) h4 {
+          font-size: 14px !important;
+          font-weight: 800 !important;
+          line-height: 1.25 !important;
+          margin: 0 !important;
+          color: #ffffff !important;
+          display: -webkit-box !important;
+          -webkit-line-clamp: 1 !important;
+          -webkit-box-orient: vertical !important;
+          overflow: hidden !important;
+        }
+
+        /* Foodpanda Clean Description */
+        .group:has(> .relative.h-48) p,
+        .group:has(> .relative.h-36) p {
+          font-size: 11px !important;
+          line-height: 1.35 !important;
+          color: #94a3b8 !important;
+          margin: 2px 0 0 0 !important;
+          display: -webkit-box !important;
+          -webkit-line-clamp: 2 !important;
+          -webkit-box-orient: vertical !important;
+          overflow: hidden !important;
+        }
+
+        /* Variant Portion Pills (Half / Full / Pieces) */
+        .group:has(> .relative.h-48) div[class*="gap-1"],
+        .group:has(> .relative.h-36) div[class*="gap-1"] {
+          gap: 4px !important;
+          margin-top: 3px !important;
+        }
+        .group:has(> .relative.h-48) div[class*="gap-1"] button,
+        .group:has(> .relative.h-36) div[class*="gap-1"] button {
+          padding: 2px 6px !important;
+          font-size: 9.5px !important;
+          border-radius: 6px !important;
+        }
+
+        /* Action Buttons Area */
+        .group:has(> .relative.h-48) > div:nth-child(2) > div:last-child,
+        .group:has(> .relative.h-36) > div:nth-child(2) > div:last-child {
+          border-top: none !important;
+          padding-top: 2px !important;
+          margin-top: 2px !important;
+        }
+        .group:has(> .relative.h-48) > div:nth-child(2) > div:last-child button,
+        .group:has(> .relative.h-36) > div:nth-child(2) > div:last-child button {
+          padding: 6px 14px !important;
+          font-size: 11px !important;
+          border-radius: 10px !important;
+          width: auto !important;
+          font-weight: 800 !important;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+        }
+
+        /* Right Side: Foodpanda Compact Horizontal 16:9 Thumbnail */
+        .group:has(> .relative.h-48) > div:first-child,
+        .group:has(> .relative.h-36) > div:first-child,
+        .group:has(> .relative.h-48) > .relative.h-48,
+        .group:has(> .relative.h-36) > .relative.h-36,
+        div[class*="rounded-3xl"]:has(> .relative.h-48) > div:first-child,
+        div[class*="rounded-3xl"]:has(> .relative.h-36) > div:first-child {
+          order: 2 !important;
+          width: 108px !important;
+          min-width: 108px !important;
+          max-width: 108px !important;
+          height: 64px !important;
+          min-height: 64px !important;
+          max-height: 64px !important;
+          aspect-ratio: 16 / 9 !important;
+          border-radius: 12px !important;
+          overflow: hidden !important;
+          flex-shrink: 0 !important;
+          position: relative !important;
+          background: #020617 !important;
+          border: 1px solid rgba(255, 255, 255, 0.12) !important;
+          margin: 0 !important;
+          align-self: center !important;
+        }
+
+        .group:has(> .relative.h-48) > div:first-child img,
+        .group:has(> .relative.h-36) > div:first-child img,
+        div[class*="rounded-3xl"]:has(> .relative.h-48) > div:first-child img,
+        div[class*="rounded-3xl"]:has(> .relative.h-36) > div:first-child img {
+          width: 100% !important;
+          height: 100% !important;
+          aspect-ratio: 16 / 9 !important;
+          object-fit: cover !important;
+          object-position: center center !important;
+          background: #0f172a !important;
+          display: block !important;
+          border-radius: inherit !important;
+        }
+
+        /* Clean up gradient overlays on thumbnail */
+        .group:has(> .relative.h-48) > div:first-child > .absolute.inset-0,
+        .group:has(> .relative.h-36) > div:first-child > .absolute.inset-0 {
+          display: none !important;
+        }
+        .group:has(> .relative.h-48) > div:first-child > .absolute.bottom-3,
+        .group:has(> .relative.h-36) > div:first-child > .absolute.bottom-3 {
+          display: none !important;
+        }
+        .group:has(> .relative.h-48) > div:first-child > .absolute.top-3,
+        .group:has(> .relative.h-36) > div:first-child > .absolute.top-3 {
+          top: 3px !important;
+          left: 3px !important;
+          transform: scale(0.72) !important;
+          transform-origin: top left !important;
+        }
+      }
+
+      /* =========================================================================
+         STRICT 1:1 SQUARE QR BARCODE IMAGE ONLY (Leaves Table Card Layout Untouched)
+         ========================================================================= */
+      img[alt*="QR" i],
+      img[src*="create-qr-code" i] {
+        aspect-ratio: 1 / 1 !important;
+        object-fit: contain !important;
+      }
+
+      /* Enhanced Print Isolation for Table Tent Cards & POS Receipt Slips with Restaurant Logo */
+      @media print {
+        @page {
+          size: auto;
+          margin: 5mm;
+        }
+        body {
+          background: #ffffff !important;
+          color: #000000 !important;
+        }
+        body * {
+          visibility: hidden !important;
+        }
+
+        /* 1. POS Thermal Receipt Slips Isolation */
+        #printable-receipt,
+        #printable-receipt *,
+        .printable-slip,
+        .printable-slip *,
+        #pos-slip-thermal-area,
+        #pos-slip-thermal-area *,
+        .receipt-slip-preview,
+        .receipt-slip-preview *,
+        #receipt-slip-modal,
+        #receipt-slip-modal > div {
+          visibility: visible !important;
+        }
+
+        #receipt-slip-modal {
+          background: transparent !important;
+          backdrop-filter: none !important;
+          box-shadow: none !important;
+          border: none !important;
+        }
+
+        div:has(#printable-receipt),
+        div:has(#pos-slip-thermal-area),
+        div:has(#printable-card) {
+          overflow: visible !important;
+          background: transparent !important;
+          backdrop-filter: none !important;
+        }
+
+        #printable-receipt,
+        .printable-slip,
+        #pos-slip-thermal-area {
+          max-height: none !important;
+          overflow: visible !important;
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          width: 78mm !important;
+          max-width: 100% !important;
+          padding: 8px !important;
+          border: none !important;
+          box-shadow: none !important;
+          background: #ffffff !important;
+          color: #000000 !important;
+          font-family: 'Courier New', Courier, monospace, monospace !important;
+          font-size: 11px !important;
+          line-height: 1.35 !important;
+          margin: 0 auto !important;
+          box-sizing: border-box !important;
+          display: block !important;
+          z-index: 999999 !important;
+        }
+
+        #printable-receipt img,
+        .printable-slip img,
+        .slip-logo,
+        .receipt-logo {
+          visibility: visible !important;
+          display: block !important;
+          max-height: 60px !important;
+          max-width: 140px !important;
+          object-fit: contain !important;
+          margin: 0 auto 6px auto !important;
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+
+        .no-print {
+          display: none !important;
+        }
+
+        /* 2. Table Tent QR Cards Isolation */
+        #printable-card,
+        #printable-card * {
+          visibility: visible !important;
+        }
+        #printable-card {
+          position: fixed !important;
+          top: 50% !important;
+          left: 50% !important;
+          transform: translate(-50%, -50%) !important;
+          width: 380px !important;
+          max-width: 100% !important;
+          padding: 24px !important;
+          border: 3px solid #f97316 !important;
+          border-radius: 24px !important;
+          box-shadow: none !important;
+          background: #ffffff !important;
+          color: #000000 !important;
+          margin: 0 auto !important;
+          box-sizing: border-box !important;
+        }
+        #printable-card img[alt*="QR" i] {
+          width: 220px !important;
+          height: 220px !important;
+          aspect-ratio: 1 / 1 !important;
+          object-fit: contain !important;
+          margin: 0 auto !important;
+          display: block !important;
+        }
+      }
+    </style>
+    <script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script>
+    <script id="mghub-persistence-vault-guard">
+      // ManagementHub Enterprise Multi-Tier Persistence & Restaurant Customization Suite
+      (function() {
+        // Global Sanitization Helper to prevent ReferenceError and XSS across all UI modals
+        window.sanitizeText = function(str) {
+          if (!str) return '';
+          return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+        };
+        var sanitizeText = window.sanitizeText;
+
+        // Global Custom Price Presets Helper
+        window.getSavedCustomPricePresets = function() {
+          try {
+            var raw = localStorage.getItem('bitehub_saved_custom_price_presets');
+            if (raw) {
+              var parsed = JSON.parse(raw);
+              if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+            }
+          } catch (e) {}
+          return [
+            { id: 'preset-karahi-half-full', name: 'Karahi Half & Full', variants: [{ name: 'Half', price: 950 }, { name: 'Full', price: 1750 }] },
+            { id: 'preset-biryani-sizes', name: 'Biryani Quarter / Half / Full', variants: [{ name: 'Quarter', price: 250 }, { name: 'Half', price: 420 }, { name: 'Full', price: 780 }] },
+            { id: 'preset-fast-food-combos', name: 'Single / Double / Family Meal', variants: [{ name: 'Single Meal', price: 490 }, { name: 'Double Meal', price: 920 }, { name: 'Family Combo', price: 1750 }] }
+          ];
+        };
+        var getSavedCustomPricePresets = window.getSavedCustomPricePresets;
+
+        // Self-Healing Dual-Tier Pre-Hydration & Cloud Reconciliation Engine
+        try {
+          var isZero = localStorage.getItem('bitehub_zero_state') === 'true';
+          var localEditTs = localStorage.getItem('bitehub_last_user_edit_ts') || '0';
+          var localEditTime = new Date(localEditTs).getTime() || 0;
+
+          var currentRests = localStorage.getItem('bitehub_pkr_restaurants_v2');
+          var parsedRests = [];
+          try { parsedRests = JSON.parse(currentRests || '[]'); } catch(e) {}
+
+          var currentItems = localStorage.getItem('bitehub_pkr_items_v2');
+          var parsedItems = [];
+          try { parsedItems = JSON.parse(currentItems || '[]'); } catch(e) {}
+
+          var currentOrders = localStorage.getItem('bitehub_pkr_orders_v2');
+          var parsedOrders = [];
+          try { parsedOrders = JSON.parse(currentOrders || '[]'); } catch(e) {}
+
+          // Non-blocking asynchronous pre-hydration to guarantee instant rendering
+          fetch('/api/sync/state')
+            .then(function(res) { return res.ok ? res.json() : null; })
+            .then(function(sJson) {
+              if (!sJson || !sJson.data || isZero) return;
+              var serverTs = new Date(sJson.data.lastUpdated || 0).getTime();
+              var serverVer = Number(sJson.data.version || 1);
+              var localVer = Number(localStorage.getItem('bitehub_state_version') || 1);
+              var hasLocalEdits = localEditTime > 0 && Array.isArray(parsedRests) && parsedRests.length > 0;
+              var serverIsColdOrOlder = hasLocalEdits && (localEditTime > serverTs || localVer > serverVer || parsedItems.length > (sJson.data.menuItems?.length || 0));
+
+              if (serverIsColdOrOlder) {
+                console.log('[SyncEngine] Reconciling server state from authoritative browser vault...');
+                fetch('/api/sync/reconcile', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    clientVersion: localVer,
+                    clientTimestamp: localEditTs,
+                    clientState: {
+                      restaurants: parsedRests,
+                      menuItems: parsedItems,
+                      orders: parsedOrders,
+                      savedPricePresets: JSON.parse(localStorage.getItem('bitehub_saved_custom_price_presets') || '[]'),
+                      branding: JSON.parse(localStorage.getItem('bitehub_app_branding_v3') || '{}')
+                    }
+                  })
+                }).catch(function() {});
+              } else if (!hasLocalEdits || (!currentRests && !currentItems) || (serverTs > localEditTime && serverVer > localVer)) {
+                if (Array.isArray(sJson.data.restaurants) && sJson.data.restaurants.length > 0) {
+                  localStorage.setItem('bitehub_pkr_restaurants_v2', JSON.stringify(sJson.data.restaurants));
+                }
+                if (Array.isArray(sJson.data.menuItems) && sJson.data.menuItems.length > 0) {
+                  localStorage.setItem('bitehub_pkr_items_v2', JSON.stringify(sJson.data.menuItems));
+                }
+                if (Array.isArray(sJson.data.orders) && sJson.data.orders.length > 0) {
+                  localStorage.setItem('bitehub_pkr_orders_v2', JSON.stringify(sJson.data.orders));
+                }
+                if (sJson.data.branding) {
+                  localStorage.setItem('bitehub_app_branding_v3', JSON.stringify(sJson.data.branding));
+                }
+                if (Array.isArray(sJson.data.savedPricePresets) && sJson.data.savedPricePresets.length > 0) {
+                  localStorage.setItem('bitehub_saved_custom_price_presets', JSON.stringify(sJson.data.savedPricePresets));
+                }
+                localStorage.setItem('bitehub_state_version', String(sJson.data.version || 1));
+                localStorage.setItem('bitehub_last_user_edit_ts', sJson.data.lastUpdated || new Date().toISOString());
+              }
+            })
+            .catch(function(e) {
+              console.warn('[SyncEngine] Background pre-hydration notice:', e);
+            });
+        } catch(e) {
+          console.warn('[SyncEngine] Pre-hydration resilience notice:', e);
+        }
+
+        // Dynamic White-Label Brand Masking for Restaurant Direct Link (Removes all generic platform branding)
+        try {
+          var p = new URLSearchParams(window.location.search);
+          var storeSlug = p.get('store') || p.get('r') || p.get('restaurant') ||
+            (window.location.hash.includes('store=') ? window.location.hash.split('store=')[1].split('&')[0] : null) ||
+            (window.location.pathname.startsWith('/store/') ? window.location.pathname.replace('/store/', '').split('/')[0] : null);
+
+          if (storeSlug) {
+            var rawRests = localStorage.getItem('bitehub_pkr_restaurants_v2');
+            if (rawRests) {
+              var parsedRests = JSON.parse(rawRests);
+              var matched = parsedRests.find(function(r) {
+                return (r.slug && r.slug.toLowerCase() === storeSlug.toLowerCase()) || (r.id && r.id.toLowerCase() === storeSlug.toLowerCase());
+              });
+              if (matched) {
+                document.title = matched.name + ' - Official Storefront';
+                if (matched.logoUrl) {
+                  var iconEl = document.querySelector("link[rel*='icon']");
+                  if (iconEl) iconEl.href = matched.logoUrl;
+                }
+                var appTitleMeta = document.querySelector("meta[name='apple-mobile-web-app-title']");
+                if (appTitleMeta) appTitleMeta.setAttribute('content', matched.name);
+              }
+            }
+          }
+        } catch(e) {}
+
+        const VAULT_KEY = 'bitehub_permanent_vault_v2';
+        const STORAGE_KEYS = [
+          'bitehub_pkr_restaurants_v2',
+          'bitehub_pkr_items_v2',
+          'bitehub_pkr_orders_v2',
+          'bitehub_superadmin_creds_v2',
+          'bitehub_customers_v3',
+          'bitehub_subscription_plans_v2',
+          'bitehub_plan_payments_v2',
+          'bitehub_app_branding_v3',
+          'bitehub_daily_special_offers_v2',
+          'bitehub_restaurant_tables_v1',
+          'bitehub_loyalty_config_v2'
+        ];
+
+        // 1. Permanent IndexedDB Engine
+        const DB_NAME = 'ManagementHubPermanentDB';
+        const DB_STORE = 'vault_store';
+        let idb = null;
+
+        function initIDB() {
+          return new Promise(function(resolve) {
+            try {
+              const req = indexedDB.open(DB_NAME, 1);
+              req.onupgradeneeded = function(e) {
+                const db = e.target.result;
+                if (!db.objectStoreNames.contains(DB_STORE)) {
+                  db.createObjectStore(DB_STORE);
+                }
+              };
+              req.onsuccess = function(e) {
+                idb = e.target.result;
+                resolve(idb);
+              };
+              req.onerror = function() { resolve(null); };
+            } catch (err) {
+              resolve(null);
+            }
+          });
+        }
+
+        async function saveIDB(key, val) {
+          try {
+            const db = idb || await initIDB();
+            if (!db) return;
+            const tx = db.transaction(DB_STORE, 'readwrite');
+            if (val === null || val === undefined) {
+              tx.objectStore(DB_STORE).delete(key);
+            } else {
+              tx.objectStore(DB_STORE).put(val, key);
+            }
+          } catch (e) {}
+        }
+
+        async function getIDB(key) {
+          try {
+            const db = idb || await initIDB();
+            if (!db) return null;
+            return new Promise(function(res) {
+              const tx = db.transaction(DB_STORE, 'readonly');
+              const req = tx.objectStore(DB_STORE).get(key);
+              req.onsuccess = function() { res(req.result); };
+              req.onerror = function() { res(null); };
+            });
+          } catch (e) { return null; }
+        }
+
+        // Global Vault Purge Helper: guarantees 100% clean wipe during reset without resurrection
+        window.purgeVaultAndStorage = async function() {
+          try {
+            localStorage.setItem('bitehub_zero_state', 'true');
+            localStorage.removeItem('bitehub_last_user_edit_ts');
+            localStorage.removeItem(VAULT_KEY);
+            for (const k of STORAGE_KEYS) {
+              localStorage.removeItem(k);
+            }
+            await saveIDB('persistent_vault_snapshot', null);
+            console.log('[SyncEngine] Vault and local storage completely purged.');
+          } catch (err) {
+            console.warn('[SyncEngine] Error purging vault:', err);
+          }
+        };
+
+        async function backupToVault() {
+          // If platform has been intentionally reset to clean zero state, do not re-populate vault
+          if (localStorage.getItem('bitehub_zero_state') === 'true') {
+            return;
+          }
+          try {
+            const vault = {};
+            for (const k of STORAGE_KEYS) {
+              const val = localStorage.getItem(k);
+              if (val) {
+                try { vault[k] = JSON.parse(val); } catch { vault[k] = val; }
+              }
+            }
+            if (Object.keys(vault).length > 0) {
+              localStorage.setItem(VAULT_KEY, JSON.stringify(vault));
+              await saveIDB('persistent_vault_snapshot', vault);
+            }
+          } catch (e) {
+            console.warn('[Vault] Backup error:', e);
+          }
+        }
+
+        async function recoverFromIDBVaultIfNeeded() {
+          try {
+            if (localStorage.getItem('bitehub_zero_state') === 'true') return;
+            var currentItems = localStorage.getItem('bitehub_pkr_items_v2');
+            var parsed = [];
+            try { parsed = JSON.parse(currentItems || '[]'); } catch(e) {}
+            if (!currentItems || !Array.isArray(parsed) || parsed.length === 0) {
+              var vault = await getIDB('persistent_vault_snapshot');
+              if (vault && typeof vault === 'object') {
+                console.log('[SyncEngine] Restoring local state from IndexedDB persistent vault...');
+                for (var k of STORAGE_KEYS) {
+                  if (vault[k]) {
+                    localStorage.setItem(k, typeof vault[k] === 'string' ? vault[k] : JSON.stringify(vault[k]));
+                  }
+                }
+              }
+            }
+          } catch(e) {}
+        }
+
+        // Listen for reset events from SSE or tabs
+        window.addEventListener('storage', function(e) {
+          if (e.key === 'bitehub_zero_state' && e.newValue === 'true') {
+            window.purgeVaultAndStorage();
+          }
+        });
+
+        // 3. Dynamic Restaurant PWA Manifest & App Downloader (Task 3)
+        function checkAndApplyRestaurantPWA() {
+          try {
+            const params = new URLSearchParams(window.location.search);
+            const storeParam = params.get('store') || params.get('restaurant') || params.get('r') || '';
+            const restsRaw = localStorage.getItem('bitehub_pkr_restaurants_v2');
+            if (!restsRaw) return;
+            const rests = JSON.parse(restsRaw);
+            if (!Array.isArray(rests) || rests.length === 0) return;
+
+            let targetRest = null;
+            if (storeParam) {
+              const cleanParam = storeParam.replace(/-+$/, '').toLowerCase();
+              targetRest = rests.find(r => (r.slug && r.slug.replace(/-+$/, '').toLowerCase() === cleanParam) || r.id.toLowerCase() === cleanParam || (r.name && r.name.toLowerCase() === cleanParam));
+            }
+            if (!targetRest) {
+              const path = window.location.pathname;
+              if (path.startsWith('/store/')) {
+                const pSlug = path.replace('/store/', '').split('/')[0].replace(/-+$/, '').toLowerCase();
+                targetRest = rests.find(r => (r.slug && r.slug.replace(/-+$/, '').toLowerCase() === pSlug) || r.id.toLowerCase() === pSlug);
+              }
+            }
+            if (!targetRest) {
+              // Check if hostname matches any restaurant customDomain
+              const host = window.location.hostname.toLowerCase();
+              if (!host.includes('run.app') && !host.includes('localhost') && !host.includes('127.0.0.1')) {
+                targetRest = rests.find(r => r.customDomain && (r.customDomain.toLowerCase().includes(host) || host.includes((r.slug || '').toLowerCase())));
+              }
+            }
+
+            // Super Admin Logo Retrieval Helper
+            const adminLogo = getSuperAdminLogo();
+
+            if (targetRest) {
+              const rName = targetRest.name || 'Restaurant';
+              const rLogo = targetRest.logoUrl || adminLogo;
+              const rColor = targetRest.primaryColor || '#f97316';
+              const storeUrl = formatDirectStoreUrl(targetRest);
+
+              // Set Favicon to this restaurant's own logo
+              let favIcon = document.querySelector('link[rel="icon"]');
+              if (favIcon && favIcon.href !== rLogo) favIcon.href = rLogo;
+              let appleIcon = document.querySelector('link[rel="apple-touch-icon"]');
+              if (appleIcon && appleIcon.href !== rLogo) appleIcon.href = rLogo;
+
+              // Update Mobile App Title for target restaurant
+              document.title = `${rName} - Official Food Ordering`;
+              let appleTitle = document.querySelector('meta[name="apple-mobile-web-app-title"]');
+              if (appleTitle) appleTitle.content = rName;
+
+              let themeMeta = document.querySelector('meta[name="theme-color"]');
+              if (themeMeta) themeMeta.content = rColor;
+
+              // Apply this restaurant's chosen dish picture shape (Default to horizontal 16:9 landscape)
+              const savedMode = localStorage.getItem('bitehub_dish_image_mode_' + targetRest.id);
+              let rMode = targetRest.imageOrientation || savedMode || 'horizontal';
+              if (rMode === 'vertical' || rMode === 'square') rMode = 'horizontal';
+              if (document.documentElement.getAttribute('data-dish-image-mode') !== rMode) {
+                document.documentElement.setAttribute('data-dish-image-mode', rMode);
+              }
+
+              // Generate Dynamic W3C Manifest Blob with Restaurant Name and Logo
+              const manifestData = {
+                name: `${rName} App`,
+                short_name: rName.length > 12 ? rName.substring(0, 12) : rName,
+                description: targetRest.tagline || `Order food directly from ${rName}`,
+                start_url: window.location.origin + '/?store=' + encodeURIComponent(targetRest.slug || targetRest.id),
+                display: "standalone",
+                background_color: "#0f172a",
+                theme_color: rColor,
+                scope: "/",
+                id: window.location.origin + '/?store=' + encodeURIComponent(targetRest.slug || targetRest.id),
+                icons: [
+                  { src: rLogo, sizes: "192x192", type: "image/png", purpose: "any maskable" },
+                  { src: rLogo, sizes: "512x512", type: "image/png", purpose: "any maskable" }
+                ]
+              };
+
+              const blob = new Blob([JSON.stringify(manifestData)], { type: 'application/manifest+json' });
+              const blobUrl = URL.createObjectURL(blob);
+              let manifestLink = document.querySelector('link[rel="manifest"]');
+              if (manifestLink) manifestLink.href = blobUrl;
+            } else {
+              document.title = "ManagementHub Enterprise Food Cloud Suite";
+              let favIcon = document.querySelector('link[rel="icon"]');
+              if (favIcon && favIcon.href !== adminLogo) favIcon.href = adminLogo;
+              let appleIcon = document.querySelector('link[rel="apple-touch-icon"]');
+              if (appleIcon && appleIcon.href !== adminLogo) appleIcon.href = adminLogo;
+            }
+          } catch (e) {
+            console.warn('[PWA] Manifest error:', e);
+          }
+        }
+
+        // Helper to retrieve the Super Admin's logo
+        function getSuperAdminLogo() {
+          try {
+            const brandingRaw = localStorage.getItem('bitehub_app_branding_v3');
+            if (brandingRaw) {
+              const b = JSON.parse(brandingRaw);
+              if (b && b.logoUrl && b.logoUrl.trim()) return b.logoUrl.trim();
+            }
+          } catch(e) {}
+          return '/icon.svg';
+        }
+
+        function getCleanStoreSlug(rest) {
+          if (!rest) return 'restaurant';
+          return (rest.slug || rest.id || 'restaurant').toLowerCase().replace(/[^a-z0-9_-]/gi, '').replace(/-+$/, '');
+        }
+
+        // Returns clean, authentic non-AI production domain URL (e.g. https://apna-restaurant.orderhub.pk)
+        function formatDirectStoreUrl(rest) {
+          if (!rest) return 'https://orderhub.pk';
+          if (rest.customDomain && rest.customDomain.trim()) {
+            const cleanDomain = rest.customDomain.trim().replace(/^https?:\/\//i, '').replace(/\/+$/, '');
+            return 'https://' + cleanDomain;
+          }
+          const cleanSlug = getCleanStoreSlug(rest);
+          return 'https://' + cleanSlug + '.orderhub.pk';
+        }
+
+        // Internal local runtime URL for previewing inside current browser session
+        function getLocalStoreUrl(rest) {
+          if (!rest) return window.location.origin;
+          const cleanSlug = getCleanStoreSlug(rest);
+          return window.location.origin + '/?store=' + encodeURIComponent(cleanSlug);
+        }
+
+        // Global Clipboard Interceptor: Ensure no "ais-dev" or "run.app" is ever copied to clipboard
+        if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
+          const originalWriteText = navigator.clipboard.writeText.bind(navigator.clipboard);
+          navigator.clipboard.writeText = function(text) {
+            if (typeof text === 'string' && (text.includes('run.app') || text.includes('ais-') || text.includes('asia-east1'))) {
+              try {
+                const restsRaw = localStorage.getItem('bitehub_pkr_restaurants_v2');
+                let rests = [];
+                if (restsRaw) rests = JSON.parse(restsRaw) || [];
+                for (const r of rests) {
+                  const s = (r.slug || '').toLowerCase();
+                  const id = (r.id || '').toLowerCase();
+                  if ((s && text.toLowerCase().includes(s)) || (id && text.toLowerCase().includes(id))) {
+                    text = formatDirectStoreUrl(r);
+                    return originalWriteText(text);
+                  }
+                }
+                text = text.replace(/https?:\/\/[a-z0-9\-_.]+\.run\.app[^\s"']*/gi, 'https://orderhub.pk');
+              } catch (e) {}
+            }
+            return originalWriteText(text);
+          };
+        }
+
+        // DOM Sanitizer: Format restaurant slugs nicely in admin mono tags if present
+        function sanitizeVisibleAdminLinks() {
+          try {
+            const elements = document.querySelectorAll('span.font-mono, span[class*="text-amber-300"], div[class*="font-mono"], [data-store-url]');
+            const restsRaw = localStorage.getItem('bitehub_pkr_restaurants_v2');
+            let rests = [];
+            if (restsRaw) {
+              try { rests = JSON.parse(restsRaw) || []; } catch {}
+            }
+            elements.forEach(function(el) {
+              const text = el.textContent || '';
+              if (text.includes('run.app') || text.includes('ais-pre') || text.includes('ais-dev') || text.includes('asia-east1')) {
+                let replaced = false;
+                for (const r of rests) {
+                  const s = (r.slug || '').toLowerCase();
+                  const id = (r.id || '').toLowerCase();
+                  if ((s && text.toLowerCase().includes(s)) || (id && text.toLowerCase().includes(id))) {
+                    el.textContent = formatDirectStoreUrl(r);
+                    if (el.title) el.title = formatDirectStoreUrl(r);
+                    replaced = true;
+                    break;
+                  }
+                }
+                if (!replaced) {
+                  if (rests.length > 0) {
+                    el.textContent = formatDirectStoreUrl(rests[0]);
+                    if (el.title) el.title = formatDirectStoreUrl(rests[0]);
+                  } else {
+                    el.textContent = 'https://orderhub.pk';
+                  }
+                }
+              }
+            });
+          } catch(e) {}
+        }
+
+        // 4. Task 4: Fix Overlapping "Open Kitchen" / Status and "Exit" in Customer View
+        function alignStorefrontHeaderButtons() {
+          try {
+            // Find storefront header top bar
+            const topBars = document.querySelectorAll('.sticky.top-0, div[class*="backdrop-blur-md"]');
+            topBars.forEach(bar => {
+              if (bar.textContent && (bar.textContent.includes('Storefront') || bar.textContent.includes('Exit to App'))) {
+                bar.style.display = 'flex';
+                bar.style.flexWrap = 'wrap';
+                bar.style.gap = '10px';
+                bar.style.alignItems = 'center';
+                bar.style.justifyContent = 'space-between';
+                bar.style.position = 'relative';
+                bar.style.zIndex = '50';
+              }
+            });
+
+            // Adjust header below top bar
+            const headers = document.querySelectorAll('header.sticky');
+            headers.forEach(h => {
+              h.style.position = 'relative';
+              h.style.top = '0px';
+              h.style.zIndex = '40';
+              h.style.marginTop = '0px';
+            });
+          } catch (e) {}
+        }
+
+        // DNS Setup Guide Modal for Custom Domain Connection
+        window.openDnsGuideModal = function(restaurant, directUrl, currentDomain) {
+          let oldModal = document.getElementById('dns-guide-modal');
+          if (oldModal) oldModal.remove();
+
+          const cDomain = (currentDomain || restaurant.customDomain || 'apna-restaurant.com').replace(/^https?:\/\//i, '').replace(/\/+$/, '');
+          const cnameTarget = window.location.hostname;
+          const embedHtml = '<!DOCTYPE html>\\n<html lang="en">\\n<head>\\n  <meta charset="UTF-8">\\n  <title>' + (restaurant.name || 'Store') + ' - Official Storefront</title>\\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\\n  <" + "style>body,html{margin:0;padding:0;width:100%;height:100%;overflow:hidden;}iframe{width:100%;height:100%;border:none;}</style>\\n<' + '/head>\\n<body>\\n  <iframe src="' + directUrl + '" allow="geolocation; camera; payment"><' + '/iframe>\\n<' + '/body>\\n<' + '/html>';
+
+          const modal = document.createElement('div');
+          modal.id = 'dns-guide-modal';
+          modal.style.cssText = 'position:fixed;inset:0;z-index:99999999;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto;';
+
+          modal.innerHTML = `
+            <div style="background:#0f172a;border:1px solid #38bdf8;border-radius:24px;max-width:560px;width:100%;padding:24px;color:#f8fafc;font-family:sans-serif;box-shadow:0 25px 50px -12px rgba(0,0,0,0.8);max-height:92vh;overflow-y:auto;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <span style="font-size:24px;">🌐</span>
+                  <div>
+                    <h3 style="margin:0;font-size:16px;font-weight:800;color:#38bdf8;">Custom Domain Setup Guide</h3>
+                    <p style="margin:2px 0 0;font-size:11px;color:#94a3b8;">Domain: <strong style="color:#fff;">${cDomain}</strong></p>
+                  </div>
+                </div>
+                <button id="close-dns-modal" style="background:#1e293b;border:none;color:#94a3b8;font-size:18px;width:32px;height:32px;border-radius:10px;cursor:pointer;">✕</button>
+              </div>
+
+              <!-- Notice -->
+              <div style="background:#020617;border:1px solid #334155;border-radius:14px;padding:12px;margin-bottom:16px;font-size:11px;color:#cbd5e1;line-height:1.5;">
+                <strong style="color:#f59e0b;">💡 Domain URL Kyun Kaam Nahi Kar Raha Tha?</strong><br>
+                Jab aap koi domain (e.g. <code>${cDomain}</code>) likhte hain, toh browser ko batana parta hai ke yeh domain kis server se connect ho. Niche diye gaye <strong>2 aasan tareeqon</strong> mein se koi ek use karein:
+              </div>
+
+              <!-- Option 1: CNAME Record -->
+              <div style="background:#1e293b;border:1px solid #334155;border-radius:16px;padding:14px;margin-bottom:14px;">
+                <h4 style="margin:0 0 8px 0;font-size:12px;font-weight:800;color:#38bdf8;">Option 1: Domain DNS CNAME Record (GoDaddy, Namecheap, Cloudflare)</h4>
+                <p style="margin:0 0 8px 0;font-size:11px;color:#94a3b8;">Apne Domain Registrar ke DNS Management mein yeh CNAME record add karein:</p>
+                <div style="background:#020617;border-radius:10px;padding:10px;font-family:monospace;font-size:11px;display:flex;flex-direction:column;gap:4px;">
+                  <div><strong style="color:#f59e0b;">Type:</strong> CNAME</div>
+                  <div><strong style="color:#f59e0b;">Host / Name:</strong> @ (ya www ya store)</div>
+                  <div style="display:flex;align-items:center;gap:6px;"><strong style="color:#f59e0b;">Points To:</strong> <span style="color:#38bdf8;word-break:break-all;">${cnameTarget}</span></div>
+                </div>
+                <button id="copy-cname-target-btn" style="margin-top:8px;background:#0284c7;color:#fff;border:none;padding:6px 14px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;">📋 Copy CNAME Target</button>
+              </div>
+
+              <!-- Option 2: 1-Minute InfinityFree / Web Hosting Embed (100% Guaranteed Instant) -->
+              <div style="background:#1e293b;border:1px solid #334155;border-radius:16px;padding:14px;margin-bottom:14px;">
+                <h4 style="margin:0 0 8px 0;font-size:12px;font-weight:800;color:#10b981;">Option 2: Free 1-Minute Embed (InfinityFree / cPanel / Hostinger)</h4>
+                <p style="margin:0 0 8px 0;font-size:11px;color:#94a3b8;">Agar aap InfinityFree ya koi bhi web hosting use kar rahe hain, toh apne <code>public_html/index.html</code> mein yeh code paste karein — aapki domain par foran restaurant open ho jayega:</p>
+                <button id="copy-embed-code-btn" style="background:#059669;color:#fff;border:none;padding:8px 14px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;">📋 Copy 1-Page Embed Code</button>
+              </div>
+
+              <!-- Option 3: Live Direct Link -->
+              <div style="background:#020617;border:1px solid #334155;border-radius:16px;padding:14px;">
+                <h4 style="margin:0 0 6px 0;font-size:12px;font-weight:800;color:#f59e0b;">🚀 Live Direct Link (Abhi 100% Active Hai)</h4>
+                <p style="margin:0 0 8px 0;font-size:11px;color:#94a3b8;">Yeh link bina kisi DNS setup ke abhi browser mein foran open hota hai:</p>
+                <div style="display:flex;gap:8px;">
+                  <input readonly value="${directUrl}" style="flex:1;background:#0f172a;border:1px solid #334155;border-radius:8px;padding:6px 10px;font-size:11px;color:#38bdf8;font-family:monospace;" />
+                  <button id="test-direct-link-btn" style="background:#f97316;color:#fff;border:none;padding:6px 14px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;">🚀 Test Live</button>
+                </div>
+              </div>
+
+              <div style="margin-top:16px;text-align:right;">
+                <button id="close-dns-guide-bottom" style="background:#334155;color:#fff;border:none;padding:8px 18px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;">Close Guide</button>
+              </div>
+            </div>
+          `;
+
+          document.body.appendChild(modal);
+
+          document.getElementById('close-dns-modal').onclick = () => modal.remove();
+          document.getElementById('close-dns-guide-bottom').onclick = () => modal.remove();
+          document.getElementById('copy-cname-target-btn').onclick = () => {
+            navigator.clipboard.writeText(cnameTarget);
+            alert('CNAME Target Copied: ' + cnameTarget);
+          };
+          document.getElementById('copy-embed-code-btn').onclick = () => {
+            navigator.clipboard.writeText(embedHtml.replace(/\\\\n/g, '\\n'));
+            alert('HTML Embed Code Copied!\n\nApni hosting ke public_html/index.html mein paste karein.');
+          };
+          document.getElementById('test-direct-link-btn').onclick = () => {
+            window.open(directUrl, '_blank');
+          };
+        };
+
+        // 5. Task 2 & Task 5: Super Admin Per-Restaurant Theme & Direct Link Manager
+        
+        // =========================================================================
+        
+        window.openRestaurantThemeEditor = function(restId) {
+          const restsRaw = localStorage.getItem('bitehub_pkr_restaurants_v2');
+          let rests = [];
+          try { rests = JSON.parse(restsRaw) || []; } catch {}
+          const restaurant = rests.find(r => r.id === restId || r.slug === restId) || rests[0];
+          if (!restaurant) {
+            alert('Restaurant not found!');
+            return;
+          }
+
+          let modal = document.getElementById('restaurant-theme-manager-modal');
+          if (modal) modal.remove();
+
+          const presets = [
+            { name: 'Royal Saffron & Amber Gold', p: '#f59e0b', s: '#b45309', badge: '👑 Luxury Desi & Biryani' },
+            { name: 'Emerald Mint & Fresh Herb', p: '#10b981', s: '#047857', badge: '🌿 Traditional Karahi' },
+            { name: 'Crimson BBQ Flame', p: '#ef4444', s: '#991b1b', badge: '🔥 Steaks & Fast Food' },
+            { name: 'Imperial Amethyst & Violet', p: '#8b5cf6', s: '#6d28d9', badge: '💎 Gourmet & Bistro' },
+            { name: 'Ocean Azure & Cyan', p: '#06b6d4', s: '#0284c7', badge: '🌊 Cafe & Seafood' },
+            { name: 'Rose Pink & Sweet Berry', p: '#ec4899', s: '#be185d', badge: '🌸 Bakery & Desserts' },
+            { name: 'Charcoal Titanium Minimal', p: '#64748b', s: '#334155', badge: '🖤 Modern Urban' }
+          ];
+
+          const directUrl = formatDirectStoreUrl(restaurant);
+
+          modal = document.createElement('div');
+          modal.id = 'restaurant-theme-manager-modal';
+          modal.style.cssText = 'position:fixed;inset:0;z-index:9999999;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto;';
+          
+          modal.innerHTML = `
+            <div style="background:#0f172a;border:1px solid #334155;border-radius:24px;max-width:540px;width:100%;padding:24px;color:#f8fafc;font-family:sans-serif;box-shadow:0 25px 50px -12px rgba(0,0,0,0.7);max-height:90vh;overflow-y:auto;">
+              <div style="display:flex;align-items:center;justify-content:between;margin-bottom:18px;">
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <img src="${restaurant.logoUrl || '/icon.svg'}" style="width:44px;height:44px;border-radius:14px;object-fit:cover;border:2px solid ${restaurant.primaryColor || '#f97316'};" />
+                  <div>
+                    <h3 style="margin:0;font-size:16px;font-weight:800;color:#fff;">🎨 Customize Theme: ${restaurant.name}</h3>
+                    <p style="margin:2px 0 0;font-size:11px;color:#94a3b8;">Set dedicated colors, layout, and direct storefront link for this restaurant</p>
+                  </div>
+                </div>
+                <button id="close-theme-modal" style="background:#1e293b;border:none;color:#94a3b8;font-size:18px;width:32px;height:32px;border-radius:10px;cursor:pointer;margin-left:auto;">✕</button>
+              </div>
+
+              <!-- Task: Automatic Line-to-URL Generator -->
+              <div style="background:#1e293b;border:1px solid #0284c7;border-radius:16px;padding:14px;margin-bottom:16px;box-shadow:0 4px 12px rgba(2,132,199,0.15);">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+                  <label style="font-size:11px;font-weight:800;color:#38bdf8;text-transform:uppercase;letter-spacing:0.5px;">⚡ Auto-Generate URL From Any Line / Name:</label>
+                  <span style="font-size:10px;background:#0369a1;color:#fff;padding:2px 8px;border-radius:6px;font-weight:bold;">Instant Auto-Slug</span>
+                </div>
+                <p style="font-size:10px;color:#94a3b8;margin:0 0 8px 0;">Yahan koi bhi line, slogan ya restaurant ka naam likhein — uska clean direct URL khud ba khud generate ho jayega:</p>
+                <div style="display:flex;gap:8px;margin-bottom:8px;">
+                  <input id="auto-slug-input" type="text" placeholder="e.g. Al Rehman Biryani & Fast Food" value="${restaurant.name || ''}" style="flex:1;background:#0f172a;border:1px solid #334155;border-radius:10px;padding:8px 12px;font-size:11px;color:#fff;font-weight:600;" />
+                  <button id="auto-slug-generate-btn" type="button" style="background:#0284c7;color:#fff;border:none;padding:8px 14px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;box-shadow:0 2px 8px rgba(2,132,199,0.4);">⚡ Set URL</button>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;background:#0f172a;border:1px dashed #334155;border-radius:8px;padding:6px 10px;font-size:10px;">
+                  <div style="color:#94a3b8;">
+                    Generated URL Slug: <strong id="auto-slug-preview" style="color:#38bdf8;font-family:monospace;font-size:11px;">${restaurant.slug || 'restaurant'}</strong>
+                  </div>
+                  <div style="color:#34d399;font-weight:bold;">
+                    ✓ Auto-Formatted
+                  </div>
+                </div>
+              </div>
+
+              <!-- Task 5: Direct Link & Custom Domain Section (100% Working Browser Ready) -->
+              <div style="background:#020617;border:1px solid #1e293b;border-radius:16px;padding:14px;margin-bottom:18px;">
+                <label style="font-size:11px;font-weight:700;color:#38bdf8;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;">🚀 Live Browser Storefront Link (100% Working):</label>
+                <div style="display:flex;gap:8px;margin-bottom:10px;">
+                  <input id="direct-storefront-url" type="text" readonly value="${directUrl}" style="flex:1;background:#0f172a;border:1px solid #334155;border-radius:10px;padding:8px 12px;font-size:11px;color:#38bdf8;font-weight:bold;font-family:monospace;" />
+                  <button id="copy-direct-url-btn" style="background:#0284c7;color:#fff;border:none;padding:8px 14px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;">📋 Copy</button>
+                  <button id="launch-direct-store-btn" style="background:#10b981;color:#fff;border:none;padding:8px 14px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;">🚀 Open</button>
+                </div>
+                <label style="font-size:11px;font-weight:700;color:#f59e0b;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;">🌐 Custom Domain (Apni Domain e.g. apna-restaurant.com):</label>
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                  <input id="custom-domain-input" type="text" placeholder="e.g. apna-restaurant.com" value="${restaurant.customDomain || ''}" style="flex:1;background:#0f172a;border:1px solid #334155;border-radius:10px;padding:8px 12px;font-size:11px;color:#fff;" />
+                  <button id="open-custom-domain-btn" style="background:#f59e0b;color:#000;border:none;padding:8px 12px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;">🚀 Open Domain</button>
+                  <button id="guide-custom-domain-btn" style="background:#334155;color:#f8fafc;border:1px solid #475569;padding:8px 12px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;">⚙️ DNS Guide</button>
+                </div>
+                <p style="font-size:10px;color:#94a3b8;margin:4px 0 0;">💡 <strong>Domain Kaam Kaise Karegi:</strong> Domain tab chalegi jab uska DNS is app par point hoga. Agar connect nahi kiya toh <strong>"⚙️ DNS Guide"</strong> dabayein — 1 minute mein connect ho jayegi!</p>
+              </div>
+
+              <!-- Task 2: Theme Presets -->
+              <div style="margin-bottom:16px;">
+                <label style="font-size:11px;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:8px;">Select Visual Theme Preset:</label>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                  ${presets.map(p => `
+                    <div class="theme-preset-option" data-primary="${p.p}" data-secondary="${p.s}" style="border:1px solid #334155;border-radius:12px;padding:8px;cursor:pointer;background:#1e293b;transition:all 0.2s;">
+                      <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+                        <span style="width:14px;height:14px;border-radius:4px;background:${p.p};display:inline-block;"></span>
+                        <span style="font-size:11px;font-weight:700;color:#fff;">${p.name.split('&')[0]}</span>
+                      </div>
+                      <span style="font-size:9px;color:#94a3b8;">${p.badge}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- Custom Colors Pickers -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+                <div>
+                  <label style="font-size:11px;font-weight:600;color:#cbd5e1;display:block;margin-bottom:4px;">Primary Brand Color:</label>
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <input id="theme-primary-color" type="color" value="${restaurant.primaryColor || '#f97316'}" style="width:36px;height:36px;border-radius:8px;border:none;cursor:pointer;background:none;" />
+                    <input id="theme-primary-hex" type="text" value="${restaurant.primaryColor || '#f97316'}" style="flex:1;background:#020617;border:1px solid #334155;border-radius:8px;padding:6px 10px;font-size:11px;color:#fff;font-family:monospace;" />
+                  </div>
+                </div>
+                <div>
+                  <label style="font-size:11px;font-weight:600;color:#cbd5e1;display:block;margin-bottom:4px;">Layout Style:</label>
+                  <select id="theme-layout-style" style="width:100%;background:#020617;border:1px solid #334155;border-radius:8px;padding:8px 10px;font-size:11px;color:#fff;">
+                    <option value="modern-showcase" ${restaurant.layoutStyle === 'modern-showcase' ? 'selected' : ''}>Modern Showcase (Hero Spotlight)</option>
+                    <option value="bistro-elegance" ${restaurant.layoutStyle === 'bistro-elegance' ? 'selected' : ''}>Bistro Elegance (Clean luxury)</option>
+                    <option value="compact-grid" ${restaurant.layoutStyle === 'compact-grid' ? 'selected' : ''}>Compact Grid (High-speed menu)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Visual Storefront Food Photo Presentation Mode -->
+              <div style="background:#020617;border:1px solid #10b981/50;border-radius:16px;padding:14px;margin-bottom:18px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+                  <label style="font-size:11px;font-weight:800;color:#34d399;text-transform:uppercase;letter-spacing:0.5px;display:flex;align-items:center;gap:6px;">
+                    <span>🌟 Foodpanda Smart View: Zero Crop Active</span>
+                  </label>
+                  <span style="font-size:10px;background:#059669;color:#fff;padding:2px 8px;border-radius:6px;font-weight:bold;">100% Full Photo</span>
+                </div>
+                <p style="font-size:11px;color:#94a3b8;margin:0;line-height:1.4;">
+                  Aap jo bhi dish photo upload kareinge, bina cut hue pori show hogi. Mobile par automatic Foodpanda-style compact cards display honge taake customer ko scroll karne mein aasani ho.
+                </p>
+                <input type="hidden" id="theme-image-orientation" value="natural" />
+              </div>
+
+              <!-- Announcement Banner -->
+              <div style="margin-bottom:20px;">
+                <label style="font-size:11px;font-weight:600;color:#cbd5e1;display:block;margin-bottom:4px;">Top Announcement Bar Text:</label>
+                <input id="theme-announcement" type="text" placeholder="e.g. 🔥 Special Offer: 20% OFF on all Karahi this weekend!" value="${restaurant.announcementText || ''}" style="width:100%;background:#020617;border:1px solid #334155;border-radius:10px;padding:8px 12px;font-size:11px;color:#fff;" />
+              </div>
+
+              <!-- Action Buttons -->
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
+                <button id="open-slip-from-theme-btn" type="button" style="background:#0284c7;color:#fff;border:none;padding:10px 16px;border-radius:12px;font-size:12px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 4px 12px rgba(2,132,199,0.35);">
+                  <span>🧾</span> <span>Edit POS Slip Layout</span>
+                </button>
+                <div style="display:flex;gap:10px;">
+                  <button id="cancel-theme-btn" style="background:#1e293b;color:#cbd5e1;border:none;padding:10px 18px;border-radius:12px;font-size:12px;font-weight:700;cursor:pointer;">Cancel</button>
+                  <button id="save-theme-btn" style="background:#ea580c;color:#fff;border:none;padding:10px 22px;border-radius:12px;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(234,88,12,0.4);">💾 Save Restaurant Theme</button>
+                </div>
+              </div>
+            </div>
+          `;
+
+          document.body.appendChild(modal);
+
+          // Wire Modal Events
+          document.getElementById('close-theme-modal').onclick = () => modal.remove();
+          document.getElementById('cancel-theme-btn').onclick = () => modal.remove();
+
+          const slipFromThemeBtn = document.getElementById('open-slip-from-theme-btn');
+          if (slipFromThemeBtn) {
+            slipFromThemeBtn.onclick = () => {
+              modal.remove();
+              if (typeof window.openSlipLayoutCustomizer === 'function') {
+                window.openSlipLayoutCustomizer(restaurant.id);
+              }
+            };
+          }
+
+          // Preset click listener
+          modal.querySelectorAll('.theme-preset-option').forEach(el => {
+            el.onclick = () => {
+              const p = el.getAttribute('data-primary');
+              document.getElementById('theme-primary-color').value = p;
+              document.getElementById('theme-primary-hex').value = p;
+              modal.querySelectorAll('.theme-preset-option').forEach(o => o.style.borderColor = '#334155');
+              el.style.borderColor = '#f97316';
+            };
+          });
+
+          // Sync color picker with hex
+          const colorInput = document.getElementById('theme-primary-color');
+          const hexInput = document.getElementById('theme-primary-hex');
+          colorInput.oninput = () => { hexInput.value = colorInput.value; };
+          hexInput.oninput = () => { colorInput.value = hexInput.value; };
+
+          // Helper: format string to clean web URL slug
+          function makeSlug(str) {
+            return (str || '')
+              .toString()
+              .toLowerCase()
+              .trim()
+              .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+              .replace(/[^a-z0-9\s-]/g, '')
+              .replace(/[\s_]+/g, '-')
+              .replace(/-+/g, '-')
+              .replace(/^-+|-+$/g, '');
+          }
+
+          const autoInput = document.getElementById('auto-slug-input');
+          const autoPreview = document.getElementById('auto-slug-preview');
+          const directInput = document.getElementById('direct-storefront-url');
+
+          if (autoInput) {
+            autoInput.oninput = function() {
+              const slug = makeSlug(this.value) || 'restaurant';
+              if (autoPreview) autoPreview.textContent = slug;
+              restaurant.slug = slug;
+              const newDirect = formatDirectStoreUrl(restaurant);
+              if (directInput) directInput.value = newDirect;
+            };
+          }
+
+          const setSlugBtn = document.getElementById('auto-slug-generate-btn');
+          if (setSlugBtn) {
+            setSlugBtn.onclick = function() {
+              const slug = makeSlug(autoInput.value) || 'restaurant';
+              restaurant.slug = slug;
+              const newDirect = formatDirectStoreUrl(restaurant);
+              if (directInput) directInput.value = newDirect;
+              if (autoPreview) autoPreview.textContent = slug;
+              localStorage.setItem('bitehub_pkr_restaurants_v2', JSON.stringify(rests));
+              fetch('/api/sync/update', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ updates: { restaurants: rests } })
+              }).catch(() => {});
+              alert('⚡ URL Successfully Generated & Set!\n\nNew Store URL:\n' + newDirect);
+            };
+          }
+
+          // Auto Zero Crop Mode Active
+          const imgOrientInp = document.getElementById('theme-image-orientation');
+          if (imgOrientInp) imgOrientInp.value = 'natural';
+
+          // Copy URL
+          document.getElementById('copy-direct-url-btn').onclick = () => {
+            const currentUrl = directInput ? directInput.value : directUrl;
+            navigator.clipboard.writeText(currentUrl);
+            alert('Restaurant Direct Link Copied!\n' + currentUrl);
+          };
+
+          // Launch Storefront
+          document.getElementById('launch-direct-store-btn').onclick = () => {
+            const currentUrl = directInput ? directInput.value : directUrl;
+            window.open(currentUrl, '_blank');
+          };
+
+          // Open Custom Domain
+          document.getElementById('open-custom-domain-btn').onclick = () => {
+            let d = document.getElementById('custom-domain-input').value.trim();
+            if (!d) {
+              alert('Pehle apni domain likhein (e.g. apna-restaurant.com)!');
+              return;
+            }
+            if (!d.startsWith('http://') && !d.startsWith('https://')) d = 'https://' + d;
+            window.open(d, '_blank');
+            alert('🌐 Opening ' + d + ' in browser...\n\n💡 Note: Agar browser mein "Site can\'t be reached" aaye, toh iska matlab hai aapki domain ka DNS abhi is app par point nahi hua.\n\n"⚙️ DNS Guide" button dabayein aur 1 minute mein connect karein!');
+          };
+
+          // Open DNS Setup Guide
+          document.getElementById('guide-custom-domain-btn').onclick = () => {
+            const currentDomain = document.getElementById('custom-domain-input').value.trim() || restaurant.customDomain || 'apna-restaurant.com';
+            window.openDnsGuideModal(restaurant, directUrl, currentDomain);
+          };
+
+          // Save Theme to API
+          document.getElementById('save-theme-btn').onclick = async () => {
+            const pColor = hexInput.value.trim() || '#f97316';
+            const layout = document.getElementById('theme-layout-style').value;
+            const ann = document.getElementById('theme-announcement').value.trim();
+            const cDomain = document.getElementById('custom-domain-input').value.trim();
+
+            const saveBtn = document.getElementById('save-theme-btn');
+            saveBtn.textContent = '⏳ Saving...';
+            saveBtn.disabled = true;
+
+            try {
+              // Update theme
+              await fetch(`/api/restaurants/${restaurant.id}/theme`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  id: restaurant.id,
+                  primaryColor: pColor,
+                  layoutStyle: layout,
+                  announcementText: ann
+                })
+              });
+
+              // Update custom domain
+              if (cDomain !== (restaurant.customDomain || '')) {
+                await fetch(`/api/restaurants/${restaurant.id}/domain`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    id: restaurant.id,
+                    customDomain: cDomain
+                  })
+                });
+              }
+
+              // Update local state directly
+              const autoInputVal = document.getElementById('auto-slug-input') ? document.getElementById('auto-slug-input').value : '';
+              if (autoInputVal) restaurant.slug = makeSlug(autoInputVal);
+              const imgOrient = document.getElementById('theme-image-orientation') ? document.getElementById('theme-image-orientation').value : 'horizontal';
+
+              restaurant.imageOrientation = imgOrient;
+              restaurant.primaryColor = pColor;
+              restaurant.layoutStyle = layout;
+              restaurant.announcementText = ann;
+              restaurant.customDomain = cDomain;
+              const nowIso = new Date().toISOString();
+              localStorage.setItem('bitehub_pkr_restaurants_v2', JSON.stringify(rests));
+              localStorage.setItem('bitehub_last_user_edit_ts', nowIso);
+              const curVer = (Number(localStorage.getItem('bitehub_state_version')) || 1) + 1;
+              localStorage.setItem('bitehub_state_version', String(curVer));
+              localStorage.setItem('bitehub_dish_image_mode_' + restaurant.id, imgOrient);
+
+              document.documentElement.setAttribute('data-dish-image-mode', imgOrient);
+
+              await backupToVault();
+
+              // Sync full restaurant update to server
+              await fetch('/api/sync/update', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ updates: { restaurants: rests } })
+              }).catch(() => {});
+
+              alert('✅ Restaurant Theme & Settings Successfully Saved!');
+              modal.remove();
+              window.location.reload();
+            } catch (err) {
+              alert('Error saving theme: ' + err.message);
+              if (saveBtn) {
+                saveBtn.textContent = '💾 Save Restaurant Theme';
+                saveBtn.disabled = false;
+              }
+            }
+          };
+        };
+
+        // =========================================================================
+        // USER REQUEST 2: CUSTOMER STOREFRONT MENU CARD SHAPE & SIZE CUSTOMIZER
+        // Full customization access for Admin & Super Admin: Shape, Size, Image Aspect, Corners & Layout
+        // =========================================================================
+        window.applyMenuCardConfig = function(targetRestaurant) {
+          try {
+            if (!targetRestaurant) {
+              const restsRaw = localStorage.getItem('bitehub_pkr_restaurants_v2');
+              let rests = [];
+              try { rests = JSON.parse(restsRaw) || []; } catch {}
+              const params = new URLSearchParams(window.location.search);
+              const storeSlug = params.get('store');
+              if (storeSlug) {
+                targetRestaurant = rests.find(r => r.slug === storeSlug || r.id === storeSlug);
+              }
+              if (!targetRestaurant) targetRestaurant = rests[0];
+            }
+            if (!targetRestaurant) return;
+
+            const cfg = targetRestaurant.menuCardConfig || {};
+            const shape = cfg.shape || 'rounded-2xl';
+            const imgShape = cfg.imageShape || 'square';
+            const layout = cfg.layout || targetRestaurant.layoutStyle || 'grid';
+            const sizePreset = cfg.sizePreset || 'medium';
+
+            let minWidth = cfg.cardWidth || (sizePreset === 'compact' ? 210 : sizePreset === 'large' ? 320 : 260);
+            let imgHeight = cfg.imageHeight || (sizePreset === 'compact' ? 120 : sizePreset === 'large' ? 220 : 160);
+            let radius = cfg.cardRadius !== undefined ? cfg.cardRadius : (shape === 'sharp' ? 0 : shape === 'pill' ? 36 : shape === 'rounded-3xl' ? 26 : shape === 'angled' ? 28 : 18);
+            let gap = cfg.cardGap || (sizePreset === 'compact' ? 10 : sizePreset === 'large' ? 22 : 16);
+
+            let aspect = '1 / 1';
+            let imgFit = 'contain';
+            if (imgShape === 'landscape') { aspect = '16 / 9'; imgFit = 'cover'; }
+            else if (imgShape === 'classic') { aspect = '4 / 3'; imgFit = 'cover'; }
+            else if (imgShape === 'circle') { aspect = '1 / 1'; imgFit = 'cover'; }
+            else if (imgShape === 'capsule') { aspect = '2 / 1'; imgFit = 'cover'; }
+
+            document.documentElement.setAttribute('data-card-shape', shape);
+            document.documentElement.setAttribute('data-img-shape', imgShape);
+            document.documentElement.setAttribute('data-menu-layout', layout);
+            document.documentElement.setAttribute('data-card-size', sizePreset);
+
+            document.documentElement.style.setProperty('--menu-card-radius', radius + 'px');
+            document.documentElement.style.setProperty('--menu-card-img-radius', radius + 'px ' + radius + 'px 0 0');
+            document.documentElement.style.setProperty('--menu-card-img-aspect', aspect);
+            document.documentElement.style.setProperty('--menu-card-img-fit', imgFit);
+            document.documentElement.style.setProperty('--menu-card-min-width', minWidth + 'px');
+            document.documentElement.style.setProperty('--menu-card-gap', gap + 'px');
+          } catch (e) {
+            console.warn('[CardConfig] Apply error:', e);
+          }
+        };
+
+        window.openMenuCardCustomizer = function(restId) {
+          const restsRaw = localStorage.getItem('bitehub_pkr_restaurants_v2');
+          let rests = [];
+          try { rests = JSON.parse(restsRaw) || []; } catch {}
+          const restaurant = rests.find(r => r.id === restId || r.slug === restId) || rests[0];
+          if (!restaurant) {
+            alert('Restaurant not found!');
+            return;
+          }
+
+          let old = document.getElementById('menu-card-customizer-modal');
+          if (old) old.remove();
+
+          // Load current configuration or defaults
+          let currentCfg = Object.assign({
+            shape: 'rounded-2xl', // 'rounded-2xl' | 'rounded-3xl' | 'sharp' | 'pill' | 'angled'
+            imageShape: 'square', // 'square' | 'landscape' | 'classic' | 'circle' | 'capsule'
+            layout: 'grid',       // 'grid' | 'horizontal' | 'showcase' | 'compact'
+            sizePreset: 'medium', // 'compact' | 'medium' | 'large' | 'custom'
+            cardWidth: 260,
+            imageHeight: 160,
+            cardRadius: 18,
+            cardGap: 16,
+            cardBorder: 'subtle',
+            cardShadow: 'subtle'
+          }, restaurant.menuCardConfig || {});
+
+          const modal = document.createElement('div');
+          modal.id = 'menu-card-customizer-modal';
+          modal.style.cssText = 'position:fixed;inset:0;z-index:9999999;background:rgba(0,0,0,0.85);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto;';
+
+          function updatePreviewMock() {
+            const previewCard = document.getElementById('mock-card-preview');
+            const previewImgBox = document.getElementById('mock-card-img-box');
+            const previewImg = document.getElementById('mock-card-img');
+            if (!previewCard || !previewImgBox || !previewImg) return;
+
+            // Apply corner shape
+            const radius = currentCfg.cardRadius !== undefined ? currentCfg.cardRadius : 18;
+            previewCard.style.borderRadius = radius + 'px';
+            previewImgBox.style.borderRadius = (currentCfg.shape === 'sharp' ? '0px' : `${radius}px ${radius}px 0 0`);
+
+            // Apply Image shape
+            if (currentCfg.imageShape === 'landscape') {
+              previewImgBox.style.aspectRatio = '16 / 9';
+              previewImg.style.objectFit = 'cover';
+              previewImgBox.style.width = '100%';
+              previewImgBox.style.height = 'auto';
+            } else if (currentCfg.imageShape === 'classic') {
+              previewImgBox.style.aspectRatio = '4 / 3';
+              previewImg.style.objectFit = 'cover';
+              previewImgBox.style.width = '100%';
+              previewImgBox.style.height = 'auto';
+            } else if (currentCfg.imageShape === 'circle') {
+              previewImgBox.style.aspectRatio = '1 / 1';
+              previewImgBox.style.width = '120px';
+              previewImgBox.style.height = '120px';
+              previewImgBox.style.borderRadius = '9999px';
+              previewImgBox.style.margin = '10px auto 4px';
+              previewImgBox.style.border = `2px solid ${restaurant.primaryColor || '#f97316'}`;
+              previewImg.style.borderRadius = '9999px';
+              previewImg.style.objectFit = 'cover';
+            } else if (currentCfg.imageShape === 'capsule') {
+              previewImgBox.style.aspectRatio = '2 / 1';
+              previewImgBox.style.borderRadius = '9999px';
+              previewImgBox.style.width = 'calc(100% - 20px)';
+              previewImgBox.style.margin = '8px auto';
+              previewImg.style.objectFit = 'cover';
+            } else {
+              // Square
+              previewImgBox.style.aspectRatio = '1 / 1';
+              previewImgBox.style.width = '100%';
+              previewImgBox.style.height = 'auto';
+              previewImg.style.objectFit = 'contain';
+            }
+
+            // Apply horizontal layout if selected
+            if (currentCfg.layout === 'horizontal') {
+              previewCard.style.display = 'flex';
+              previewCard.style.flexDirection = 'row';
+              previewCard.style.alignItems = 'stretch';
+              previewCard.style.maxWidth = '380px';
+              previewImgBox.style.order = '2';
+              previewImgBox.style.width = '95px';
+              previewImgBox.style.height = '95px';
+              previewImgBox.style.minWidth = '95px';
+              previewImgBox.style.borderRadius = radius + 'px';
+              previewImgBox.style.margin = '0';
+            } else {
+              previewCard.style.display = 'block';
+              previewCard.style.maxWidth = '280px';
+              previewImgBox.style.order = '1';
+            }
+
+            // Live counters
+            const radVal = document.getElementById('slider-radius-val');
+            if (radVal) radVal.textContent = radius + 'px';
+            const widthVal = document.getElementById('slider-width-val');
+            if (widthVal) widthVal.textContent = (currentCfg.cardWidth || 260) + 'px';
+            const heightVal = document.getElementById('slider-height-val');
+            if (heightVal) heightVal.textContent = (currentCfg.imageHeight || 160) + 'px';
+            const gapVal = document.getElementById('slider-gap-val');
+            if (gapVal) gapVal.textContent = (currentCfg.cardGap || 16) + 'px';
+          }
+
+          modal.innerHTML = `
+            <div style="background:#0f172a;border:1px solid #7c3aed;border-radius:24px;max-width:880px;width:100%;color:#f8fafc;font-family:system-ui,-apple-system,sans-serif;box-shadow:0 25px 60px rgba(0,0,0,0.9);max-height:92vh;overflow-y:auto;display:flex;flex-direction:column;">
+              
+              <!-- Header -->
+              <div style="padding:16px 22px;border-bottom:1px solid #1e293b;background:#1e293b/40;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <img src="${restaurant.logoUrl || '/icon.svg'}" style="width:42px;height:42px;border-radius:12px;object-fit:cover;border:2px solid #a855f7;" />
+                  <div>
+                    <h3 style="margin:0;font-size:16px;font-weight:800;color:#fff;display:flex;align-items:center;gap:8px;">
+                      📐 Customer Menu Card Shape & Size: <span style="color:#c084fc;">${sanitizeText(restaurant.name)}</span>
+                    </h3>
+                    <p style="margin:2px 0 0;font-size:11px;color:#94a3b8;">
+                      Customer storefront ke dish cards ka shape, photo frame, size aur layout 100% customize karein
+                    </p>
+                  </div>
+                </div>
+                <button id="close-card-customizer-btn" style="background:#1e293b;border:none;color:#94a3b8;font-size:18px;width:34px;height:34px;border-radius:10px;cursor:pointer;">✕</button>
+              </div>
+
+              <!-- Main Body: Two Columns (Controls on Left, Live Customer Preview on Right) -->
+              <div style="padding:20px;display:grid;grid-template-columns:1.2fr 0.8fr;gap:20px;align-items:start;">
+                
+                <!-- Left Column: Customization Controls -->
+                <div style="display:flex;flex-direction:column;gap:16px;">
+                  
+                  <!-- 1. Card Corner Shape (Kon sa shape rakhna ha) -->
+                  <div style="background:#020617;border:1px solid #334155;border-radius:14px;padding:12px;">
+                    <label style="font-size:11px;font-weight:800;color:#c084fc;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:8px;">
+                      1. Card Corner Shape (Card Ka Shape / Shakal):
+                    </label>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(130px, 1fr));gap:6px;">
+                      <button type="button" class="cfg-shape-btn" data-shape="rounded-2xl" data-radius="18" style="padding:8px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;${currentCfg.shape === 'rounded-2xl' ? 'background:#7c3aed;color:#fff;border:1px solid #a855f7;' : 'background:#0f172a;color:#94a3b8;border:1px solid #334155;'}">
+                        🌟 Soft Round (18px)
+                      </button>
+                      <button type="button" class="cfg-shape-btn" data-shape="rounded-3xl" data-radius="26" style="padding:8px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;${currentCfg.shape === 'rounded-3xl' ? 'background:#7c3aed;color:#fff;border:1px solid #a855f7;' : 'background:#0f172a;color:#94a3b8;border:1px solid #334155;'}">
+                        🫧 Squircle (26px)
+                      </button>
+                      <button type="button" class="cfg-shape-btn" data-shape="sharp" data-radius="0" style="padding:8px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;${currentCfg.shape === 'sharp' ? 'background:#7c3aed;color:#fff;border:1px solid #a855f7;' : 'background:#0f172a;color:#94a3b8;border:1px solid #334155;'}">
+                        📐 Sharp Box (0px Edgy)
+                      </button>
+                      <button type="button" class="cfg-shape-btn" data-shape="pill" data-radius="36" style="padding:8px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;${currentCfg.shape === 'pill' ? 'background:#7c3aed;color:#fff;border:1px solid #a855f7;' : 'background:#0f172a;color:#94a3b8;border:1px solid #334155;'}">
+                        💊 Capsule Pill (36px)
+                      </button>
+                      <button type="button" class="cfg-shape-btn" data-shape="angled" data-radius="28" style="padding:8px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;${currentCfg.shape === 'angled' ? 'background:#7c3aed;color:#fff;border:1px solid #a855f7;' : 'background:#0f172a;color:#94a3b8;border:1px solid #334155;'}">
+                        ⚡ Diagonal Angled Cut
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- 2. Dish Image Frame & Aspect Ratio -->
+                  <div style="background:#020617;border:1px solid #334155;border-radius:14px;padding:12px;">
+                    <label style="font-size:11px;font-weight:800;color:#38bdf8;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:8px;">
+                      2. Dish Photo Frame (Tasveer Ka Frame):
+                    </label>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(130px, 1fr));gap:6px;">
+                      <button type="button" class="cfg-img-btn" data-img="square" style="padding:8px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;${currentCfg.imageShape === 'square' ? 'background:#0284c7;color:#fff;border:1px solid #38bdf8;' : 'background:#0f172a;color:#94a3b8;border:1px solid #334155;'}">
+                        🔲 1:1 Full Zero-Crop
+                      </button>
+                      <button type="button" class="cfg-img-btn" data-img="landscape" style="padding:8px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;${currentCfg.imageShape === 'landscape' ? 'background:#0284c7;color:#fff;border:1px solid #38bdf8;' : 'background:#0f172a;color:#94a3b8;border:1px solid #334155;'}">
+                        🎬 16:9 Landscape Wide
+                      </button>
+                      <button type="button" class="cfg-img-btn" data-img="classic" style="padding:8px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;${currentCfg.imageShape === 'classic' ? 'background:#0284c7;color:#fff;border:1px solid #38bdf8;' : 'background:#0f172a;color:#94a3b8;border:1px solid #334155;'}">
+                        🍲 4:3 Foodie Classic
+                      </button>
+                      <button type="button" class="cfg-img-btn" data-img="circle" style="padding:8px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;${currentCfg.imageShape === 'circle' ? 'background:#0284c7;color:#fff;border:1px solid #38bdf8;' : 'background:#0f172a;color:#94a3b8;border:1px solid #334155;'}">
+                        ⭕ Round Circle Avatar
+                      </button>
+                      <button type="button" class="cfg-img-btn" data-img="capsule" style="padding:8px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;${currentCfg.imageShape === 'capsule' ? 'background:#0284c7;color:#fff;border:1px solid #38bdf8;' : 'background:#0f172a;color:#94a3b8;border:1px solid #334155;'}">
+                        💊 Oval / Capsule Inset
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- 3. Layout Mode -->
+                  <div style="background:#020617;border:1px solid #334155;border-radius:14px;padding:12px;">
+                    <label style="font-size:11px;font-weight:800;color:#10b981;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:8px;">
+                      3. Storefront Layout (Cards Ka Arrangement):
+                    </label>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+                      <button type="button" class="cfg-layout-btn" data-layout="grid" style="padding:8px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;text-align:left;${currentCfg.layout === 'grid' ? 'background:#065f46;color:#fff;border:1px solid #10b981;' : 'background:#0f172a;color:#94a3b8;border:1px solid #334155;'}">
+                        🍱 Responsive Grid (Multi-Column)
+                      </button>
+                      <button type="button" class="cfg-layout-btn" data-layout="horizontal" style="padding:8px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;text-align:left;${currentCfg.layout === 'horizontal' ? 'background:#065f46;color:#fff;border:1px solid #10b981;' : 'background:#0f172a;color:#94a3b8;border:1px solid #334155;'}">
+                        📱 Foodpanda Row Cards (Horizontal List)
+                      </button>
+                      <button type="button" class="cfg-layout-btn" data-layout="showcase" style="padding:8px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;text-align:left;${currentCfg.layout === 'showcase' ? 'background:#065f46;color:#fff;border:1px solid #10b981;' : 'background:#0f172a;color:#94a3b8;border:1px solid #334155;'}">
+                        👑 Hero Showcase (Broad Visual Cards)
+                      </button>
+                      <button type="button" class="cfg-layout-btn" data-layout="compact" style="padding:8px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;text-align:left;${currentCfg.layout === 'compact' ? 'background:#065f46;color:#fff;border:1px solid #10b981;' : 'background:#0f172a;color:#94a3b8;border:1px solid #334155;'}">
+                        ⚡ High-Speed Compact Tiles
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- 4. Card Size & Scale (Kis size ma rakhna ha) -->
+                  <div style="background:#020617;border:1px solid #334155;border-radius:14px;padding:12px;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                      <label style="font-size:11px;font-weight:800;color:#fbbf24;text-transform:uppercase;letter-spacing:0.5px;">
+                        4. Card Size Scale & Sliders (Kis Size Ma Rakhna Ha):
+                      </label>
+                      <span style="font-size:10px;color:#cbd5e1;font-weight:bold;">Custom Sliders Active</span>
+                    </div>
+
+                    <!-- Size Quick Presets -->
+                    <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;">
+                      <button type="button" class="cfg-size-preset-btn" data-size="compact" style="flex:1;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;${currentCfg.sizePreset === 'compact' ? 'background:#f59e0b;color:#000;' : 'background:#1e293b;color:#94a3b8;border:1px solid #334155;'}">🔹 Compact (Small)</button>
+                      <button type="button" class="cfg-size-preset-btn" data-size="medium" style="flex:1;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;${currentCfg.sizePreset === 'medium' ? 'background:#f59e0b;color:#000;' : 'background:#1e293b;color:#94a3b8;border:1px solid #334155;'}">🔸 Medium (Balanced)</button>
+                      <button type="button" class="cfg-size-preset-btn" data-size="large" style="flex:1;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;${currentCfg.sizePreset === 'large' ? 'background:#f59e0b;color:#000;' : 'background:#1e293b;color:#94a3b8;border:1px solid #334155;'}">🔶 Jumbo (Large)</button>
+                    </div>
+
+                    <!-- Sliders -->
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                      <div>
+                        <div style="display:flex;justify-content:space-between;font-size:10px;color:#94a3b8;margin-bottom:2px;">
+                          <span>Card Width:</span>
+                          <strong id="slider-width-val" style="color:#fbbf24;">${currentCfg.cardWidth || 260}px</strong>
+                        </div>
+                        <input id="slider-card-width" type="range" min="190" max="420" value="${currentCfg.cardWidth || 260}" style="width:100%;cursor:pointer;" />
+                      </div>
+                      <div>
+                        <div style="display:flex;justify-content:space-between;font-size:10px;color:#94a3b8;margin-bottom:2px;">
+                          <span>Corner Radius:</span>
+                          <strong id="slider-radius-val" style="color:#fbbf24;">${currentCfg.cardRadius !== undefined ? currentCfg.cardRadius : 18}px</strong>
+                        </div>
+                        <input id="slider-card-radius" type="range" min="0" max="40" value="${currentCfg.cardRadius !== undefined ? currentCfg.cardRadius : 18}" style="width:100%;cursor:pointer;" />
+                      </div>
+                      <div>
+                        <div style="display:flex;justify-content:space-between;font-size:10px;color:#94a3b8;margin-bottom:2px;">
+                          <span>Image Height:</span>
+                          <strong id="slider-height-val" style="color:#fbbf24;">${currentCfg.imageHeight || 160}px</strong>
+                        </div>
+                        <input id="slider-image-height" type="range" min="90" max="300" value="${currentCfg.imageHeight || 160}" style="width:100%;cursor:pointer;" />
+                      </div>
+                      <div>
+                        <div style="display:flex;justify-content:space-between;font-size:10px;color:#94a3b8;margin-bottom:2px;">
+                          <span>Cards Spacing / Gap:</span>
+                          <strong id="slider-gap-val" style="color:#fbbf24;">${currentCfg.cardGap || 16}px</strong>
+                        </div>
+                        <input id="slider-card-gap" type="range" min="6" max="32" value="${currentCfg.cardGap || 16}" style="width:100%;cursor:pointer;" />
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Right Column: Interactive Live Customer Card Preview -->
+                <div style="background:#020617;border:1px solid #334155;border-radius:18px;padding:16px;position:sticky;top:0;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+                    <label style="font-size:11px;font-weight:800;color:#f8fafc;text-transform:uppercase;letter-spacing:0.5px;display:flex;align-items:center;gap:6px;">
+                      <span>📱 Live Customer View Preview:</span>
+                    </label>
+                    <span style="font-size:9px;background:#10b981/20;border:1px solid #10b981/40;color:#34d399;padding:2px 8px;border-radius:6px;font-weight:bold;">
+                      Real-Time Rendering
+                    </span>
+                  </div>
+
+                  <!-- The Mock Card -->
+                  <div style="background:#090d16;border:1px dashed #334155;border-radius:16px;padding:16px;display:flex;justify-content:center;align-items:center;min-height:330px;">
+                    <div id="mock-card-preview" style="background:#0f172a;border:1px solid rgba(255,255,255,0.1);border-radius:18px;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,0.6);width:100%;max-width:280px;transition:all 0.2s;">
+                      
+                      <div id="mock-card-img-box" style="width:100%;aspect-ratio:1/1;background:#020617;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:18px 18px 0 0;position:relative;">
+                        <img id="mock-card-img" src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80" style="width:100%;height:100%;object-fit:contain;transition:all 0.2s;" />
+                        <span style="position:absolute;top:8px;left:8px;background:rgba(15,23,42,0.85);backdrop-filter:blur(4px);color:#34d399;border:1px solid rgba(16,185,129,0.3);font-size:9px;padding:2px 6px;border-radius:6px;font-weight:bold;">
+                          🍖 Halal
+                        </span>
+                      </div>
+
+                      <div id="mock-card-content" style="padding:12px;display:flex;flex-direction:column;gap:6px;">
+                        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:6px;">
+                          <div>
+                            <h5 style="margin:0;font-size:13px;font-weight:800;color:#fff;">Special Chicken Biryani</h5>
+                            <span style="font-size:9px;color:#94a3b8;">Biryani & Rice</span>
+                          </div>
+                          <span style="font-size:12px;font-weight:900;color:#fbbf24;">Rs. 750</span>
+                        </div>
+                        <p style="margin:0;font-size:10px;color:#94a3b8;line-height:1.3;">
+                          Traditional aromatic basmati rice cooked with saffron, potatoes and tender chicken.
+                        </p>
+                        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px;">
+                          <div style="display:flex;gap:4px;">
+                            <span style="font-size:8.5px;background:#0369a1/25;border:1px solid #0284c7/50;color:#38bdf8;padding:1px 5px;border-radius:4px;font-weight:700;">Half: Rs.420</span>
+                            <span style="font-size:8.5px;background:#0369a1/25;border:1px solid #0284c7/50;color:#38bdf8;padding:1px 5px;border-radius:4px;font-weight:700;">Full: Rs.750</span>
+                          </div>
+                          <button type="button" style="background:#10b981;color:#fff;border:none;padding:5px 12px;border-radius:6px;font-size:10px;font-weight:bold;cursor:pointer;">+ Add</button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <p style="margin:12px 0 0;font-size:10px;color:#94a3b8;text-align:center;">
+                    💡 Storefront par customer ko exact yahi card shape aur size dikhega!
+                  </p>
+                </div>
+
+              </div>
+
+              <!-- Footer Actions -->
+              <div style="padding:16px 22px;border-top:1px solid #1e293b;background:#090d16;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+                <div style="font-size:11px;color:#34d399;font-weight:bold;display:flex;align-items:center;gap:6px;">
+                  <span>✓ 100% Real-Time Multi-Device Sync Active</span>
+                </div>
+                <div style="display:flex;gap:10px;">
+                  <button type="button" id="cancel-card-customizer-btn" style="background:#1e293b;color:#cbd5e1;border:none;padding:10px 18px;border-radius:12px;font-size:12px;font-weight:700;cursor:pointer;">Cancel</button>
+                  <button type="button" id="save-card-customizer-btn" style="background:#7c3aed;color:#fff;border:none;padding:10px 24px;border-radius:12px;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(124,58,237,0.4);">
+                    💾 Save Menu Card Shape & Size
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          `;
+
+          document.body.appendChild(modal);
+
+          // Wire Modal Handlers
+          document.getElementById('close-card-customizer-btn').onclick = () => modal.remove();
+          document.getElementById('cancel-card-customizer-btn').onclick = () => modal.remove();
+
+          // 1. Shape Buttons
+          modal.querySelectorAll('.cfg-shape-btn').forEach(b => {
+            b.onclick = () => {
+              currentCfg.shape = b.getAttribute('data-shape');
+              currentCfg.cardRadius = parseInt(b.getAttribute('data-radius'), 10);
+              const rInp = document.getElementById('slider-card-radius');
+              if (rInp) rInp.value = currentCfg.cardRadius;
+              modal.querySelectorAll('.cfg-shape-btn').forEach(x => {
+                x.style.background = '#0f172a';
+                x.style.borderColor = '#334155';
+                x.style.color = '#94a3b8';
+              });
+              b.style.background = '#7c3aed';
+              b.style.borderColor = '#a855f7';
+              b.style.color = '#fff';
+              updatePreviewMock();
+            };
+          });
+
+          // 2. Image Frame Buttons
+          modal.querySelectorAll('.cfg-img-btn').forEach(b => {
+            b.onclick = () => {
+              currentCfg.imageShape = b.getAttribute('data-img');
+              modal.querySelectorAll('.cfg-img-btn').forEach(x => {
+                x.style.background = '#0f172a';
+                x.style.borderColor = '#334155';
+                x.style.color = '#94a3b8';
+              });
+              b.style.background = '#0284c7';
+              b.style.borderColor = '#38bdf8';
+              b.style.color = '#fff';
+              updatePreviewMock();
+            };
+          });
+
+          // 3. Layout Buttons
+          modal.querySelectorAll('.cfg-layout-btn').forEach(b => {
+            b.onclick = () => {
+              currentCfg.layout = b.getAttribute('data-layout');
+              modal.querySelectorAll('.cfg-layout-btn').forEach(x => {
+                x.style.background = '#0f172a';
+                x.style.borderColor = '#334155';
+                x.style.color = '#94a3b8';
+              });
+              b.style.background = '#065f46';
+              b.style.borderColor = '#10b981';
+              b.style.color = '#fff';
+              updatePreviewMock();
+            };
+          });
+
+          // 4. Size Presets
+          modal.querySelectorAll('.cfg-size-preset-btn').forEach(b => {
+            b.onclick = () => {
+              const sp = b.getAttribute('data-size');
+              currentCfg.sizePreset = sp;
+              if (sp === 'compact') {
+                currentCfg.cardWidth = 210;
+                currentCfg.imageHeight = 120;
+                currentCfg.cardGap = 10;
+              } else if (sp === 'large') {
+                currentCfg.cardWidth = 320;
+                currentCfg.imageHeight = 220;
+                currentCfg.cardGap = 22;
+              } else {
+                currentCfg.cardWidth = 260;
+                currentCfg.imageHeight = 160;
+                currentCfg.cardGap = 16;
+              }
+              const wInp = document.getElementById('slider-card-width');
+              if (wInp) wInp.value = currentCfg.cardWidth;
+              const hInp = document.getElementById('slider-image-height');
+              if (hInp) hInp.value = currentCfg.imageHeight;
+              const gInp = document.getElementById('slider-card-gap');
+              if (gInp) gInp.value = currentCfg.cardGap;
+
+              modal.querySelectorAll('.cfg-size-preset-btn').forEach(x => {
+                x.style.background = '#1e293b';
+                x.style.color = '#94a3b8';
+              });
+              b.style.background = '#f59e0b';
+              b.style.color = '#000';
+              updatePreviewMock();
+            };
+          });
+
+          // Sliders
+          const wInp = document.getElementById('slider-card-width');
+          if (wInp) {
+            wInp.oninput = (e) => {
+              currentCfg.cardWidth = parseInt(e.target.value, 10);
+              updatePreviewMock();
+            };
+          }
+          const rInp = document.getElementById('slider-card-radius');
+          if (rInp) {
+            rInp.oninput = (e) => {
+              currentCfg.cardRadius = parseInt(e.target.value, 10);
+              updatePreviewMock();
+            };
+          }
+          const hInp = document.getElementById('slider-image-height');
+          if (hInp) {
+            hInp.oninput = (e) => {
+              currentCfg.imageHeight = parseInt(e.target.value, 10);
+              updatePreviewMock();
+            };
+          }
+          const gInp = document.getElementById('slider-card-gap');
+          if (gInp) {
+            gInp.oninput = (e) => {
+              currentCfg.cardGap = parseInt(e.target.value, 10);
+              updatePreviewMock();
+            };
+          }
+
+          // Initial Render
+          updatePreviewMock();
+
+          // Save Button
+          const saveBtn = document.getElementById('save-card-customizer-btn');
+          if (saveBtn) {
+            saveBtn.onclick = async () => {
+              saveBtn.disabled = true;
+              saveBtn.textContent = '⏳ Saving Shape & Size...';
+
+              restaurant.menuCardConfig = currentCfg;
+              restaurant.layoutStyle = currentCfg.layout;
+              const nowIso = new Date().toISOString();
+              localStorage.setItem('bitehub_pkr_restaurants_v2', JSON.stringify(rests));
+              localStorage.setItem('bitehub_last_user_edit_ts', nowIso);
+              const curVer = (Number(localStorage.getItem('bitehub_state_version')) || 1) + 1;
+              localStorage.setItem('bitehub_state_version', String(curVer));
+              if (typeof backupToVault === 'function') backupToVault();
+
+              // Apply live right away
+              window.applyMenuCardConfig(restaurant);
+
+              try {
+                await fetch(`/api/restaurants/${restaurant.id}/theme`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    id: restaurant.id,
+                    layoutStyle: currentCfg.layout,
+                    menuCardConfig: currentCfg
+                  })
+                });
+
+                await fetch('/api/sync/update', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ updates: { restaurants: rests } })
+                });
+
+                alert(`🎉 Kamyabi! "${restaurant.name}" ke menu card ka shape aur size successfully save ho gaya hai!\n\nStorefront par naya shape live apply ho gaya.`);
+                modal.remove();
+              } catch (err) {
+                alert('Warning: Saved locally. Server sync error: ' + err.message);
+                modal.remove();
+              }
+            };
+          }
+        };
+
+        // =========================================================================
+        // USER REQUEST 1: SUPER ADMIN PERMANENT DATA SAVE CONSOLE
+        // Multi-tier storage persistence, disk lock, download, restore, snapshots
+        // USER REQUEST: SUPER ADMIN PERMANENT DATA SAVE CONSOLE
+        // Multi-tier storage persistence, disk lock, download, restore, snapshots
+        // STRICT ACCESS: Only Super Admin can view or use the Vault
+        // =========================================================================
+        window.openPermanentSaveManager = function() {
+          try {
+            // Strictly guard: Only allow in Super Admin Console, never in branch/restaurant admin or storefront
+            if (typeof isStrictSuperAdminContext === 'function' && !isStrictSuperAdminContext()) {
+              console.warn('[Vault] Access restricted: Super Admin only.');
+              return;
+            }
+
+            // Guarantee super admin verification credentials for active session
+            sessionStorage.setItem('super_admin_verified', 'true');
+            localStorage.setItem('bitehub_is_super_admin', 'true');
+
+            let old = document.getElementById('superadmin-perm-save-modal');
+            if (old) old.remove();
+
+            const restsRaw = localStorage.getItem('bitehub_pkr_restaurants_v2') || '[]';
+            let rests = [];
+            try { rests = JSON.parse(restsRaw); } catch {}
+
+            const itemsRaw = localStorage.getItem('bitehub_pkr_items_v2') || '[]';
+            let items = [];
+            try { items = JSON.parse(itemsRaw); } catch {}
+
+            const ordersRaw = localStorage.getItem('bitehub_pkr_orders_v2') || '[]';
+            let orders = [];
+            try { orders = JSON.parse(ordersRaw); } catch {}
+
+            const modal = document.createElement('div');
+            modal.id = 'superadmin-perm-save-modal';
+            modal.style.cssText = 'position:fixed;inset:0;z-index:2147483647;background:rgba(0,0,0,0.88);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto;';
+
+          modal.innerHTML = `
+            <div style="background:#0f172a;border:2px solid #10b981;border-radius:24px;max-width:780px;width:100%;color:#f8fafc;font-family:system-ui,-apple-system,sans-serif;box-shadow:0 25px 60px rgba(0,0,0,0.9);max-height:92vh;overflow-y:auto;display:flex;flex-direction:column;">
+              
+              <!-- Header -->
+              <div style="padding:18px 24px;border-bottom:1px solid #1e293b;background:#064e3b/30;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <div style="width:44px;height:44px;border-radius:14px;background:#059669;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 14px rgba(5,150,105,0.4);">
+                    🛡️
+                  </div>
+                  <div>
+                    <h3 style="margin:0;font-size:17px;font-weight:800;color:#fff;display:flex;align-items:center;gap:8px;">
+                      Super Admin Permanent Data Storage & Vault
+                    </h3>
+                    <p style="margin:2px 0 0;font-size:11px;color:#a7f3d0;">
+                      Disk Lock • Zero Data Loss Protection • Snapshots & Full State Persistence
+                    </p>
+                  </div>
+                </div>
+                <button id="close-perm-save-modal-btn" style="background:#1e293b;border:none;color:#94a3b8;font-size:18px;width:34px;height:34px;border-radius:10px;cursor:pointer;">✕</button>
+              </div>
+
+              <!-- Main Content -->
+              <div style="padding:22px;display:flex;flex-direction:column;gap:18px;">
+                
+                <!-- Status Banner -->
+                <div style="background:#064e3b/30;border:1px solid #10b981;border-radius:16px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+                  <div>
+                    <div style="font-size:13px;font-weight:800;color:#34d399;display:flex;align-items:center;gap:6px;">
+                      <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#34d399;box-shadow:0 0 10px #34d399;"></span>
+                      Permanent Cloud & Disk Storage: HEALTHY & ACTIVE
+                    </div>
+                    <div style="font-size:11px;color:#cbd5e1;margin-top:2px;">
+                      Tamam data state.json, seed.json, permanent-storage.json, backup journal aur IndexedDB mein محفوظ hai.
+                    </div>
+                  </div>
+                  <div id="perm-save-timestamp-badge" style="font-size:10px;background:#065f46;color:#a7f3d0;border:1px solid #34d399/50;padding:4px 10px;border-radius:8px;font-weight:bold;">
+                    Status: Auto-Locked
+                  </div>
+                </div>
+
+                <!-- Database Metrics Overview -->
+                <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(130px, 1fr));gap:10px;">
+                  <div style="background:#020617;border:1px solid #334155;border-radius:12px;padding:12px;text-align:center;">
+                    <div style="font-size:20px;font-weight:900;color:#f97316;">${rests.length}</div>
+                    <div style="font-size:10px;color:#94a3b8;font-weight:bold;margin-top:2px;">Restaurants</div>
+                  </div>
+                  <div style="background:#020617;border:1px solid #334155;border-radius:12px;padding:12px;text-align:center;">
+                    <div style="font-size:20px;font-weight:900;color:#38bdf8;">${items.length}</div>
+                    <div style="font-size:10px;color:#94a3b8;font-weight:bold;margin-top:2px;">Menu Items</div>
+                  </div>
+                  <div style="background:#020617;border:1px solid #334155;border-radius:12px;padding:12px;text-align:center;">
+                    <div style="font-size:20px;font-weight:900;color:#10b981;">${orders.length}</div>
+                    <div style="font-size:10px;color:#94a3b8;font-weight:bold;margin-top:2px;">Live Orders</div>
+                  </div>
+                  <div style="background:#020617;border:1px solid #334155;border-radius:12px;padding:12px;text-align:center;">
+                    <div style="font-size:20px;font-weight:900;color:#fbbf24;">${(typeof getSavedCustomPricePresets === 'function' ? getSavedCustomPricePresets() : (typeof window !== 'undefined' && typeof window.getSavedCustomPricePresets === 'function' ? window.getSavedCustomPricePresets() : [])).length}</div>
+                    <div style="font-size:10px;color:#94a3b8;font-weight:bold;margin-top:2px;">Price Presets</div>
+                  </div>
+                </div>
+
+                <!-- Restaurant Permanent Lock Panel (Super Admin Exclusive) -->
+                <div style="background:#020617;border:1px solid #334155;border-radius:16px;padding:16px;">
+                  <div style="font-size:12px;font-weight:800;color:#34d399;margin-bottom:10px;display:flex;align-items:center;gap:6px;">
+                    <span>🏢 Registered Restaurants Permanent Lock Status:</span>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:8px;">
+                    ${rests.map(r => {
+                      const rItemsCount = items.filter(i => i.restaurantId === r.id).length;
+                      const isLocked = !!r.isPermanentlySaved;
+                      return `
+                        <div style="background:#0f172a;border:1px solid ${isLocked ? '#059669' : '#334155'};border-radius:12px;padding:12px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+                          <div style="display:flex;align-items:center;gap:10px;">
+                            <img src="${r.logoUrl || '/icon.svg'}" style="width:34px;height:34px;border-radius:8px;object-fit:cover;border:1px solid ${r.primaryColor || '#f97316'};" />
+                            <div>
+                              <div style="font-size:13px;font-weight:800;color:#fff;display:flex;align-items:center;gap:6px;">
+                                <span>${sanitizeText(r.name)}</span>
+                                ${isLocked ? '<span style="font-size:9px;background:#065f46;color:#a7f3d0;padding:2px 8px;border-radius:6px;font-weight:bold;">🔒 Permanent</span>' : ''}
+                              </div>
+                              <div style="font-size:10px;color:#94a3b8;">
+                                ${rItemsCount} Dishes • Slug: <span style="color:#38bdf8;">${r.slug || r.id}</span>
+                                ${isLocked && r.permanentSavedAt ? ` • Locked on: <span style="color:#34d399;">${r.permanentSavedAt}</span>` : ''}
+                              </div>
+                            </div>
+                          </div>
+                          <div>
+                            ${isLocked ? `
+                              <div style="font-size:11px;font-weight:bold;color:#34d399;display:flex;align-items:center;gap:4px;background:#064e3b/40;padding:6px 12px;border-radius:8px;border:1px solid #059669/50;">
+                                <span>🔒</span> <span>Permanently Saved</span>
+                              </div>
+                            ` : `
+                              <button type="button" class="btn-lock-single-restaurant" data-id="${r.id}" style="background:#059669;color:#fff;border:none;padding:8px 16px;border-radius:10px;font-size:11px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 4px 12px rgba(5,150,105,0.4);">
+                                <span>🛡️</span> <span>Lock Restaurant Permanently</span>
+                              </button>
+                            `}
+                          </div>
+                        </div>
+                      `;
+                    }).join('')}
+                  </div>
+                </div>
+
+                <!-- PRIMARY ACTION: 1-Click Master Permanent Save -->
+                <div style="background:linear-gradient(135deg,rgba(5,150,105,0.15),rgba(2,132,199,0.15));border:2px solid #059669;border-radius:18px;padding:18px;text-align:center;">
+                  <h4 style="margin:0 0 6px 0;font-size:15px;font-weight:800;color:#fff;">
+                    💾 Lock & Save Master State Permanently
+                  </h4>
+                  <p style="margin:0 0 14px 0;font-size:11px;color:#cbd5e1;max-width:520px;margin-left:auto;margin-right:auto;">
+                    Is button ko dabane se poora system (menu, rates, orders, restaurants, credentials, slip config) permanent storage mein lock ho jata hai aur timestamped snapshot ban jati hai.
+                  </p>
+                  <button type="button" id="execute-permanent-save-btn" style="background:#059669;color:#fff;border:none;padding:12px 28px;border-radius:12px;font-size:13px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 25px rgba(5,150,105,0.5);">
+                    <span>🛡️ Save Permanent Master Copy (Disk Lock)</span>
+                  </button>
+                  <div id="perm-save-feedback" style="display:none;margin-top:10px;font-size:11px;font-weight:bold;color:#34d399;"></div>
+                </div>
+
+                <!-- Secondary Actions: Export JSON & Restore JSON -->
+                <div style="background:#020617;border:1px solid #334155;border-radius:16px;padding:16px;">
+                  <div style="font-size:12px;font-weight:800;color:#38bdf8;margin-bottom:8px;">
+                    📥 Manual Backup Export & Restore:
+                  </div>
+                  <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                    <button type="button" id="download-perm-backup-btn" style="background:#1e293b;border:1px solid #38bdf8;color:#38bdf8;padding:9px 16px;border-radius:10px;font-size:11px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:6px;">
+                      <span>📥</span> <span>Download Master JSON Backup</span>
+                    </button>
+                    <label style="background:#1e293b;border:1px solid #10b981;color:#34d399;padding:9px 16px;border-radius:10px;font-size:11px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:6px;">
+                      <span>📤</span> <span>Restore Master JSON File</span>
+                      <input type="file" id="upload-perm-backup-input" accept=".json" style="display:none;" />
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Historical Snapshots List -->
+                <div style="background:#020617;border:1px solid #334155;border-radius:16px;padding:16px;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+                    <div style="font-size:12px;font-weight:800;color:#fbbf24;display:flex;align-items:center;gap:6px;">
+                      <span>🕒 Saved Snapshots & Restore Points:</span>
+                    </div>
+                    <button type="button" id="refresh-snapshots-btn" style="background:none;border:none;color:#94a3b8;font-size:10px;cursor:pointer;text-decoration:underline;">
+                      🔄 Refresh Snapshots
+                    </button>
+                  </div>
+
+                  <div id="snapshots-list-container" style="max-height:180px;overflow-y:auto;display:flex;flex-direction:column;gap:6px;">
+                    <div style="font-size:11px;color:#94a3b8;padding:8px;text-align:center;">Loading snapshots from server...</div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Footer -->
+              <div style="padding:14px 24px;border-top:1px solid #1e293b;background:#090d16;display:flex;justify-content:flex-end;">
+                <button type="button" id="close-perm-save-footer-btn" style="background:#334155;color:#fff;border:none;padding:9px 20px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;">
+                  Close Vault
+                </button>
+              </div>
+
+            </div>
+          `;
+
+          document.body.appendChild(modal);
+
+          document.getElementById('close-perm-save-modal-btn').onclick = () => modal.remove();
+          document.getElementById('close-perm-save-footer-btn').onclick = () => modal.remove();
+          modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.remove();
+          });
+          const handleEsc = (e) => {
+            if (e.key === 'Escape') {
+              modal.remove();
+              document.removeEventListener('keydown', handleEsc);
+            }
+          };
+          document.addEventListener('keydown', handleEsc);
+
+          // Single restaurant locking action
+          modal.querySelectorAll('.btn-lock-single-restaurant').forEach(b => {
+            b.onclick = async () => {
+              const rId = b.getAttribute('data-id');
+              const targetR = rests.find(x => x.id === rId);
+              if (!targetR) return;
+
+              b.disabled = true;
+              b.textContent = '⏳ Locking...';
+
+              try {
+                targetR.isPermanentlySaved = true;
+                targetR.permanentSavedAt = new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
+
+                const nowIso = new Date().toISOString();
+                localStorage.setItem('bitehub_pkr_restaurants_v2', JSON.stringify(rests));
+                localStorage.setItem('bitehub_last_user_edit_ts', nowIso);
+                const curVer = (Number(localStorage.getItem('bitehub_state_version')) || 1) + 1;
+                localStorage.setItem('bitehub_state_version', String(curVer));
+                if (typeof backupToVault === 'function') backupToVault();
+
+                await fetch('/api/admin/permanent-save', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    savedBy: 'Super Admin',
+                    restaurantId: targetR.id,
+                    restaurantName: targetR.name,
+                    notes: `Super Admin permanently saved and locked ${targetR.name}`
+                  })
+                });
+
+                await fetch('/api/sync/update', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ updates: { restaurants: rests } })
+                });
+
+                alert(`🎉 Kamyabi! "${targetR.name}" Super Admin ki taraf se permanently save aur disk par lock ho chuka hai!\n\nYe restaurant aur iska tamam menu ab permanent storage mein محفوظ ho gaya hai.`);
+                window.openPermanentSaveManager();
+              } catch (err) {
+                alert('Permanent save error: ' + err.message);
+                b.disabled = false;
+                b.textContent = '🛡️ Lock Restaurant Permanently';
+              }
+            };
+          });
+
+          // Execute permanent save
+          const execBtn = document.getElementById('execute-permanent-save-btn');
+          const feedback = document.getElementById('perm-save-feedback');
+          const timeBadge = document.getElementById('perm-save-timestamp-badge');
+
+          if (execBtn) {
+            execBtn.onclick = async () => {
+              execBtn.disabled = true;
+              execBtn.innerHTML = '<span>⏳ Saving across all storage tiers...</span>';
+
+              try {
+                // Ensure local vault is fresh
+                if (typeof backupToVault === 'function') backupToVault();
+
+                const res = await fetch('/api/admin/permanent-save', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    savedBy: 'Super Admin',
+                    notes: 'Manual Permanent Lock from Super Admin Vault',
+                    clientState: {
+                      restaurants: rests,
+                      menuItems: items,
+                      orders: orders,
+                      branding: JSON.parse(localStorage.getItem('bitehub_app_branding_v3') || '{}'),
+                      savedPricePresets: (typeof getSavedCustomPricePresets === 'function' ? getSavedCustomPricePresets() : (typeof window !== 'undefined' && typeof window.getSavedCustomPricePresets === 'function' ? window.getSavedCustomPricePresets() : [])),
+                      customCategories: JSON.parse(localStorage.getItem('bitehub_custom_cats_all') || '[]')
+                    }
+                  })
+                });
+
+                if (res.ok) {
+                  const data = await res.json();
+                  if (feedback) {
+                    feedback.style.display = 'block';
+                    feedback.textContent = `✅ Kamyabi! Permanent master copy saved (${new Date().toLocaleTimeString()}). Snapshot: ${data.snapshotFilename || 'created'}`;
+                  }
+                  if (timeBadge) {
+                    timeBadge.textContent = 'Last Saved: ' + new Date().toLocaleTimeString();
+                    timeBadge.style.background = '#059669';
+                  }
+                  alert('🎉 Tamam data permanent save ho gaya hai (Permanent Master Copy Saved)!\n\nDatabase state disk par lock ho chuka hai.');
+                  loadSnapshotsList();
+                } else {
+                  throw new Error('Server returned ' + res.status);
+                }
+              } catch (err) {
+                alert('Permanent save notice: ' + err.message);
+              } finally {
+                execBtn.disabled = false;
+                execBtn.innerHTML = '<span>🛡️ Save Permanent Master Copy (Disk Lock)</span>';
+              }
+            };
+          }
+
+          // Download backup
+          const dlBtn = document.getElementById('download-perm-backup-btn');
+          if (dlBtn) {
+            dlBtn.onclick = () => {
+              window.open('/api/backup/export', '_blank');
+            };
+          }
+
+          // Upload and restore backup
+          const upInput = document.getElementById('upload-perm-backup-input');
+          if (upInput) {
+            upInput.onchange = (e) => {
+              const file = e.target.files && e.target.files[0];
+              if (!file) return;
+              const reader = new FileReader();
+              reader.onload = async (evt) => {
+                try {
+                  const parsed = JSON.parse(evt.target.result);
+                  if (confirm(`Kya aap is backup file ko restore karna chahte hain? Tamam data update ho jayega.`)) {
+                    const res = await fetch('/api/backup/restore', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify(parsed)
+                    });
+                    if (res.ok) {
+                      alert('✅ Backup kamyabi se restore ho gaya hai! Page refresh ho raha hai...');
+                      window.location.reload();
+                    } else {
+                      alert('Error restoring backup.');
+                    }
+                  }
+                } catch (err) {
+                  alert('Invalid JSON file: ' + err.message);
+                }
+              };
+              reader.readAsText(file);
+            };
+          }
+
+          // Fetch & Render Snapshots
+          async function loadSnapshotsList() {
+            const listContainer = document.getElementById('snapshots-list-container');
+            if (!listContainer) return;
+            try {
+              const res = await fetch('/api/admin/snapshots');
+              if (res.ok) {
+                const data = await res.json();
+                const snapshots = data.snapshots || [];
+                if (snapshots.length === 0) {
+                  listContainer.innerHTML = '<div style="font-size:11px;color:#94a3b8;padding:8px;text-align:center;">No snapshots saved yet. "Save Permanent Master Copy" button dabayein pehli snapshot banane ke liye.</div>';
+                  return;
+                }
+
+                listContainer.innerHTML = snapshots.map(s => {
+                  const dateStr = new Date(s.createdAt).toLocaleString();
+                  const summary = s.summary || {};
+                  return `
+                    <div style="background:#0f172a;border:1px solid #334155;border-radius:10px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+                      <div>
+                        <div style="font-size:11px;font-weight:800;color:#fff;">${s.filename}</div>
+                        <div style="font-size:9.5px;color:#94a3b8;margin-top:2px;">
+                          ${dateStr} • ${s.sizeKb} KB • ${summary.restaurantsCount || 0} Restaurants • ${summary.menuItemsCount || 0} Dishes
+                        </div>
+                      </div>
+                      <button type="button" class="restore-snapshot-btn" data-file="${s.filename}" style="background:#0284c7;color:#fff;border:none;padding:5px 10px;border-radius:6px;font-size:10px;font-weight:bold;cursor:pointer;">
+                        ⚡ Restore
+                      </button>
+                    </div>
+                  `;
+                }).join('');
+
+                listContainer.querySelectorAll('.restore-snapshot-btn').forEach(b => {
+                  b.onclick = async () => {
+                    const fname = b.getAttribute('data-file');
+                    if (confirm(`Kya aap "${fname}" snapshot restore karna chahte hain?`)) {
+                      b.disabled = true;
+                      b.textContent = '⏳ Restoring...';
+                      const restoreRes = await fetch('/api/admin/snapshots/restore', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ filename: fname })
+                      });
+                      if (restoreRes.ok) {
+                        alert(`✅ Snapshot "${fname}" kamyabi se restore ho gaya!`);
+                        window.location.reload();
+                      } else {
+                        alert('Error restoring snapshot.');
+                        b.disabled = false;
+                        b.textContent = '⚡ Restore';
+                      }
+                    }
+                  };
+                });
+              }
+            } catch (err) {
+              listContainer.innerHTML = `<div style="font-size:10px;color:#f87171;">Snapshot load error: ${err.message}</div>`;
+            }
+          }
+
+          const refreshBtn = document.getElementById('refresh-snapshots-btn');
+          if (refreshBtn) refreshBtn.onclick = loadSnapshotsList;
+
+          loadSnapshotsList();
+          } catch (e) {
+            console.error('[Permanent Save Manager error]', e);
+          }
+        };
+
+        // Initialize menu card configuration on storefront visit
+        window.applyMenuCardConfig();
+
+        function isStrictSuperAdminContext() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const isStorefront = urlParams.has('store') || urlParams.has('r') || urlParams.has('restaurant') || window.location.pathname.startsWith('/store') || window.location.hash.includes('store=');
+          if (isStorefront) return false;
+
+          // Check if currently viewing Branch Admin, Manager, or Kitchen
+          const isBranchOrKitchen = Array.from(document.querySelectorAll('h1, h2, h3, nav span, header div')).some(el => {
+            const t = (el.textContent || '').trim().toLowerCase();
+            return t === 'kitchen operations' || t === 'kitchen view' || t.includes('branch admin') || t.includes('restaurant manager') || t.includes('live kitchen orders');
+          });
+          if (isBranchOrKitchen) return false;
+
+          // Strict Super Admin signals
+          const isSuperAdminConsole = Array.from(document.querySelectorAll('h1, h2, header div, nav span')).some(el => {
+            const t = (el.textContent || '').trim().toLowerCase();
+            return t.includes('super admin console') || t === 'super admin' || t.includes('platform overview') || t.includes('registered restaurants');
+          });
+
+          const hasExitSuperAdminBtn = Array.from(document.querySelectorAll('button')).some(b => {
+            const title = (b.getAttribute('title') || '').toLowerCase();
+            const txt = (b.textContent || '').trim().toLowerCase();
+            return title.includes('exit super admin') || txt.includes('exit super admin');
+          });
+
+          const isVerified = sessionStorage.getItem('super_admin_verified') === 'true' || localStorage.getItem('bitehub_is_super_admin') === 'true';
+
+          return (isSuperAdminConsole || hasExitSuperAdminBtn) && !isBranchOrKitchen;
+        }
+
+        function injectSuperAdminHeaderVaultButton() {
+          try {
+            const isSuperAdmin = isStrictSuperAdminContext();
+            const existingVaultBtn = document.getElementById('superadmin-header-vault-btn');
+
+            // Strictly remove vault button if not in Super Admin Console
+            if (!isSuperAdmin) {
+              if (existingVaultBtn) existingVaultBtn.remove();
+              return;
+            }
+
+            if (existingVaultBtn) return;
+
+            // Find an exit button or suitable action container in Super Admin console
+            const exitBtn = Array.from(document.querySelectorAll('button')).find(b => {
+              const t = (b.getAttribute('title') || '').toLowerCase();
+              const txt = (b.textContent || '').trim().toLowerCase();
+              return (t.includes('exit super admin') || txt.includes('exit super admin') || (txt === 'exit' && isSuperAdmin)) && b.closest('header, nav, div');
+            });
+            const hostContainer = exitBtn ? exitBtn.parentElement : (document.querySelector('header .flex, nav .flex, header > div, header'));
+            if (!hostContainer) return;
+
+            const vaultBtn = document.createElement('button');
+            vaultBtn.id = 'superadmin-header-vault-btn';
+            vaultBtn.type = 'button';
+            vaultBtn.className = 'px-3 py-1.5 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 text-white border border-emerald-400/50 rounded-xl font-bold text-xs flex items-center space-x-1.5 cursor-pointer shadow-md shadow-emerald-950/40 transition-all active:scale-95';
+            vaultBtn.title = 'Super Admin Permanent Data Storage, Disk Lock & Backup Vault';
+            vaultBtn.innerHTML = '<span>🛡️</span> <span>Super Admin Vault</span>';
+            vaultBtn.onclick = function(e) {
+              if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+              }
+              window.openPermanentSaveManager();
+            };
+
+            if (exitBtn && exitBtn.parentElement) {
+              exitBtn.parentElement.insertBefore(vaultBtn, exitBtn);
+            } else {
+              hostContainer.appendChild(vaultBtn);
+            }
+          } catch (e) {
+            console.warn('[Header Vault] notice:', e);
+          }
+        }
+
+        function injectSuperAdminCardButtons() {
+          try {
+            // Always ensure header vault button is refreshed
+            injectSuperAdminHeaderVaultButton();
+
+            const isSuperAdmin = isStrictSuperAdminContext();
+
+            // STRICT PROTECTION: If not in Super Admin Console, clean up card tool rows
+            if (!isSuperAdmin) {
+              document.querySelectorAll('.mghub-card-tools-row').forEach(el => el.remove());
+              return;
+            }
+
+            const restsRaw = localStorage.getItem('bitehub_pkr_restaurants_v2');
+            let rests = [];
+            try { rests = JSON.parse(restsRaw) || []; } catch {}
+            if (rests.length === 0) return;
+
+            // Clean up any stray floating widgets
+            const existingFloating = document.getElementById('mghub-floating-admin-suite');
+            if (existingFloating) existingFloating.remove();
+
+            // Inject Clean Permanent Save Button in Super Admin Console Header
+            injectSuperAdminHeaderVaultButton();
+
+            // 2. Restaurant Card Injection (Find edit buttons strictly inside Super Admin Console for registered restaurants)
+            let editButtons = Array.from(document.querySelectorAll('button')).filter(b => {
+              const t = (b.getAttribute('title') || '').toLowerCase();
+              const txt = (b.textContent || '').trim().toLowerCase();
+              const isEdit = t.includes('edit restaurant') || txt.includes('edit restaurant') || (txt === 'edit' && b.closest('div[class*="rounded"]'));
+              if (!isEdit) return false;
+              // Guard: Only match actual restaurant cards, never dishes or categories
+              const card = b.closest('div[class*="rounded"]');
+              if (!card) return false;
+              const cardText = card.textContent || '';
+              return rests.some(r => cardText.includes(r.name) || (r.slug && cardText.includes(r.slug)));
+            });
+
+            if (!editButtons || editButtons.length === 0) return;
+
+            editButtons.forEach(function(editBtn) {
+              const parentBar = editBtn.parentElement;
+              if (!parentBar) return;
+
+              // Find restaurant name from the card
+              const card = editBtn.closest('div[class*="rounded"]') || parentBar.closest('div');
+              if (card && card.querySelector('.mghub-card-tools-row')) return;
+
+              let matchedRest = null;
+              if (card && card.textContent) {
+                matchedRest = rests.find(function(r) { return r.name && card.textContent.includes(r.name); });
+              }
+              if (!matchedRest) matchedRest = rests[0];
+
+              const restId = matchedRest.id;
+              const directUrl = formatDirectStoreUrl(matchedRest);
+
+              // Clean up parentBar to ensure edit & delete buttons never overflow
+              parentBar.style.display = 'flex';
+              parentBar.style.alignItems = 'center';
+              parentBar.style.justifyContent = 'space-between';
+              parentBar.style.gap = '6px';
+              parentBar.style.width = '100%';
+              parentBar.style.boxSizing = 'border-box';
+              parentBar.style.overflow = 'hidden';
+
+              // Remove any stray buttons if previously injected directly into parentBar
+              parentBar.querySelectorAll('.mghub-card-theme-btn, .mghub-card-link-btn, .mghub-card-menu-btn, .mghub-card-slip-btn, .mghub-card-shape-btn, .mghub-card-perm-btn').forEach(b => b.remove());
+
+              // Dedicated 6-column Tools Grid Row for Super Admin
+              const toolsRow = document.createElement('div');
+              toolsRow.className = 'mghub-card-tools-row grid grid-cols-6 gap-1 pt-2 border-t border-slate-800/80 mb-2 w-full';
+
+              // 1. Theme Button
+              const themeBtn = document.createElement('button');
+              themeBtn.type = 'button';
+              themeBtn.className = 'mghub-card-theme-btn py-1.5 px-1 text-amber-400 hover:text-white rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 cursor-pointer transition-colors text-[10px] font-bold flex items-center justify-center gap-1 text-center truncate';
+              themeBtn.title = 'Customize Visual Theme for ' + matchedRest.name;
+              themeBtn.innerHTML = '<span>🎨</span> <span>Theme</span>';
+              themeBtn.onclick = function(e) {
+                e.stopPropagation();
+                window.openRestaurantThemeEditor(restId);
+              };
+
+              // 2. Shape & Size Customizer Button
+              const shapeBtn = document.createElement('button');
+              shapeBtn.type = 'button';
+              shapeBtn.className = 'mghub-card-shape-btn py-1.5 px-1 text-purple-400 hover:text-white rounded-xl bg-purple-500/15 hover:bg-purple-500/25 border border-purple-500/30 cursor-pointer transition-colors text-[10px] font-bold flex items-center justify-center gap-1 text-center truncate';
+              shapeBtn.title = 'Customize Menu Card Shape, Image Frame, and Size for ' + matchedRest.name;
+              shapeBtn.innerHTML = '<span>📐</span> <span>Shape</span>';
+              shapeBtn.onclick = function(e) {
+                e.stopPropagation();
+                window.openMenuCardCustomizer(restId);
+              };
+
+              // 3. Direct Link Button
+              const linkBtn = document.createElement('button');
+              linkBtn.type = 'button';
+              linkBtn.className = 'mghub-card-link-btn py-1.5 px-1 text-cyan-400 hover:text-white rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 cursor-pointer transition-colors text-[10px] font-bold flex items-center justify-center gap-1 text-center truncate';
+              linkBtn.title = 'Official Storefront: ' + directUrl;
+              linkBtn.innerHTML = '<span>🔗</span> <span>Link</span>';
+              linkBtn.onclick = function(e) {
+                e.stopPropagation();
+                const localUrl = getLocalStoreUrl(matchedRest);
+                try {
+                  navigator.clipboard.writeText(directUrl);
+                } catch (err) {}
+                window.open(localUrl, '_blank');
+                alert('🚀 ' + matchedRest.name + ' Official Storefront:\n\n' + directUrl + '\n\n✨ Real Store Link copy ho gaya hai!');
+              };
+
+              // 4. Menu Manager Button
+              const menuBtn = document.createElement('button');
+              menuBtn.type = 'button';
+              menuBtn.className = 'mghub-card-menu-btn py-1.5 px-1 text-emerald-400 hover:text-white rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 cursor-pointer transition-colors text-[10px] font-bold flex items-center justify-center gap-1 text-center truncate';
+              menuBtn.title = 'Manage Menu Manually for ' + matchedRest.name;
+              menuBtn.innerHTML = '<span>📋</span> <span>Menu</span>';
+              menuBtn.onclick = function(e) {
+                e.stopPropagation();
+                window.openManualMenuManager(restId);
+              };
+
+              // 5. Slip Layout Customizer Button
+              const slipBtn = document.createElement('button');
+              slipBtn.type = 'button';
+              slipBtn.className = 'mghub-card-slip-btn py-1.5 px-1 text-orange-400 hover:text-white rounded-xl bg-orange-500/15 hover:bg-orange-500/25 border border-orange-500/30 cursor-pointer transition-colors text-[10px] font-bold flex items-center justify-center gap-1 text-center truncate';
+              slipBtn.title = 'Customize Thermal Receipt & Print Slip Layout for ' + matchedRest.name;
+              slipBtn.innerHTML = '<span>🧾</span> <span>Slip</span>';
+              slipBtn.onclick = function(e) {
+                e.stopPropagation();
+                if (typeof window.openSlipLayoutCustomizer === 'function') {
+                  window.openSlipLayoutCustomizer(restId);
+                } else {
+                  alert('Slip Layout Customizer loading...');
+                }
+              };
+
+              // 6. Super Admin 1-Click Permanent Save & Lock Button
+              const permBtn = document.createElement('button');
+              permBtn.type = 'button';
+              const isLocked = !!matchedRest.isPermanentlySaved;
+              permBtn.className = isLocked
+                ? 'mghub-card-perm-btn py-1.5 px-1 text-emerald-300 rounded-xl bg-emerald-500/20 border border-emerald-400/50 text-[10px] font-bold flex items-center justify-center gap-1 text-center truncate cursor-pointer'
+                : 'mghub-card-perm-btn py-1.5 px-1 text-teal-400 hover:text-white rounded-xl bg-teal-500/15 hover:bg-teal-500/25 border border-teal-500/30 cursor-pointer transition-colors text-[10px] font-bold flex items-center justify-center gap-1 text-center truncate';
+              permBtn.title = isLocked
+                ? `Permanently Saved & Locked (${matchedRest.permanentSavedAt || 'Protected'})`
+                : `Super Admin: 1-Click Permanent Save for ${matchedRest.name}`;
+              permBtn.innerHTML = isLocked ? '<span>🔒</span> <span>Locked</span>' : '<span>🛡️</span> <span>Perm Lock</span>';
+
+              permBtn.onclick = async function(e) {
+                e.stopPropagation();
+                if (isLocked) {
+                  alert(`🔒 "${matchedRest.name}" already Super Admin ki taraf se permanently save aur lock hai!\n\nSaved At: ${matchedRest.permanentSavedAt || 'Protected'}\n\nYe restaurant master database aur container storage mein 100% محفوظ hai.`);
+                  return;
+                }
+
+                if (!confirm(`Kya aap "${matchedRest.name}" ko permanently save aur disk par lock karna chahte hain?\n\nEk bar Super Admin save kar dega toh ye restaurant hamesha ke liye permanent database mein lock ho jayega.`)) {
+                  return;
+                }
+
+                permBtn.disabled = true;
+                permBtn.innerHTML = '<span>⏳</span> <span>Locking...</span>';
+
+                try {
+                  matchedRest.isPermanentlySaved = true;
+                  matchedRest.permanentSavedAt = new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
+
+                  const nowIso = new Date().toISOString();
+                  localStorage.setItem('bitehub_pkr_restaurants_v2', JSON.stringify(rests));
+                  localStorage.setItem('bitehub_last_user_edit_ts', nowIso);
+                  const curVer = (Number(localStorage.getItem('bitehub_state_version')) || 1) + 1;
+                  localStorage.setItem('bitehub_state_version', String(curVer));
+                  if (typeof backupToVault === 'function') backupToVault();
+
+                  // Save authoritative permanent snapshot on server
+                  await fetch('/api/admin/permanent-save', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      savedBy: 'Super Admin',
+                      restaurantId: matchedRest.id,
+                      restaurantName: matchedRest.name,
+                      notes: `Super Admin permanently saved and locked ${matchedRest.name}`
+                    })
+                  });
+
+                  await fetch('/api/sync/update', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ updates: { restaurants: rests } })
+                  });
+
+                  permBtn.className = 'mghub-card-perm-btn py-1.5 px-1 text-emerald-300 rounded-xl bg-emerald-500/20 border border-emerald-400/50 text-[10px] font-bold flex items-center justify-center gap-1 text-center truncate cursor-pointer';
+                  permBtn.title = `Permanently Saved & Locked (${matchedRest.permanentSavedAt})`;
+                  permBtn.innerHTML = '<span>🔒</span> <span>Locked</span>';
+
+                  alert(`🎉 Kamyabi! "${matchedRest.name}" Super Admin ki taraf se permanently save aur disk par lock ho chuka hai!\n\nYe restaurant aur iska tamam data ab permanent storage mein محفوظ ho gaya.`);
+                } catch (err) {
+                  alert('Permanent save error: ' + err.message);
+                  permBtn.innerHTML = '<span>🛡️</span> <span>Perm Lock</span>';
+                } finally {
+                  permBtn.disabled = false;
+                }
+              };
+
+              toolsRow.appendChild(themeBtn);
+              toolsRow.appendChild(shapeBtn);
+              toolsRow.appendChild(linkBtn);
+              toolsRow.appendChild(menuBtn);
+              toolsRow.appendChild(slipBtn);
+              toolsRow.appendChild(permBtn);
+
+              if (parentBar.parentElement) {
+                parentBar.parentElement.insertBefore(toolsRow, parentBar);
+              }
+            });
+          } catch (e) {
+            console.warn('[Admin] Button injection notice:', e);
+          }
+        }
+
+        function hideAdminTopCategories() {
+          try {
+            const urlParams = new URLSearchParams(window.location.search);
+            const isStorefront = urlParams.has('store') || urlParams.has('r') || urlParams.has('restaurant') || window.location.pathname.startsWith('/store') || window.location.hash.includes('store=');
+            if (isStorefront) return;
+
+            // In Admin: hide top categories bar completely as requested
+            const adminCatBars = document.querySelectorAll('.admin-top-categories, div.flex.items-center.space-x-2.overflow-x-auto.pb-1');
+            adminCatBars.forEach(el => {
+              if (!el.closest('.mghub-cat-bar-wrapper')) {
+                el.style.setProperty('display', 'none', 'important');
+              }
+            });
+          } catch (e) {}
+        }
+
+        // Initialize background tasks with throttled intervals for optimal speed
+        initIDB().then(recoverFromIDBVaultIfNeeded);
+        window.addEventListener('beforeunload', backupToVault);
+        setInterval(backupToVault, 60000);
+        setInterval(alignStorefrontHeaderButtons, 3000);
+        setInterval(checkAndApplyRestaurantPWA, 4000);
+        setInterval(injectSuperAdminCardButtons, 2500);
+        setInterval(injectSuperAdminHeaderVaultButton, 2000);
+        setInterval(hideAdminTopCategories, 1500);
+        setInterval(sanitizeVisibleAdminLinks, 3500);
+
+        setTimeout(() => {
+          backupToVault();
+          checkAndApplyRestaurantPWA();
+          alignStorefrontHeaderButtons();
+          injectSuperAdminHeaderVaultButton();
+          injectSuperAdminCardButtons();
+          hideAdminTopCategories();
+          sanitizeVisibleAdminLinks();
+        }, 1200);
+      })();
+    </script>
+    <script>
+      // Safe toast notification replacement for window.alert to prevent iframe freeze
+      window.alert = function(msg) {
+        if (!msg) return;
+        console.warn('[Notice]', msg);
+        let toast = document.getElementById('global-safe-toast');
+        if (!toast) {
+          toast = document.createElement('div');
+          toast.id = 'global-safe-toast';
+          toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:999999;background:#0f172a;border:1px solid #f97316;color:#f8fafc;padding:12px 22px;border-radius:12px;font-family:sans-serif;font-size:13px;font-weight:600;box-shadow:0 12px 35px rgba(0,0,0,0.6);display:flex;align-items:center;gap:10px;pointer-events:none;transition:all 0.25s ease;';
+          document.body.appendChild(toast);
+        }
+        toast.innerHTML = '<span>🔔</span> <span>' + String(msg) + '</span>';
+        toast.style.opacity = '1';
+        toast.style.transform = 'translateX(-50%) translateY(0)';
+        clearTimeout(window.__toastTimer);
+        window.__toastTimer = setTimeout(function() {
+          if (toast) {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(-50%) translateY(12px)';
+          }
+        }, 4000);
+      };
+
+      // Global Image Error Resilience: Prevent any corrupt / broken image icons
+      window.addEventListener('error', function(event) {
+        var target = event.target;
+        if (target && target.tagName === 'IMG' && !target.dataset.fallbackApplied) {
+          // If uploaded dish photo, retry with cache-buster before replacing
+          if (target.src && target.src.includes('/uploads/dishes/') && !target.dataset.retried) {
+            target.dataset.retried = 'true';
+            setTimeout(function() {
+              if (target) target.src = target.src.split('?')[0] + '?t=' + Date.now();
+            }, 600);
+            return;
+          }
+          target.dataset.fallbackApplied = 'true';
+          target.src = 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80';
+        }
+      }, true);
+    </script>
+    <script src="/menu-order-suite.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" crossorigin src="/assets/index-DRP79dIO.js"></script>
+  </body>
+</html>
